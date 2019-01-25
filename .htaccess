@@ -1,0 +1,29 @@
+# Block the include-only files.
+RewriteEngine On
+RewriteBase /
+RewriteRule ^wp/wp-admin/includes/ - [F,L]
+RewriteRule \.env - [F,L]
+RewriteRule !^wp/wp-includes/ - [S=3]
+RewriteRule ^wp/wp-includes/[^/]+\.php$ - [F,L]
+RewriteRule ^wp/wp-includes/js/tinymce/langs/.+\.php - [F,L]
+RewriteRule ^wp/wp-includes/theme-compat/ - [F,L]
+
+# Disable fetching plugin versions through readme.(txt|html)
+RewriteRule ^(.*)readme\.txt$ index.php? [L,R=301,NC]
+RewriteRule ^(.*)readme\.html$ index.php? [L,R=301,NC]
+
+# Serve WP from subdirectory
+RewriteCond %{REQUEST_URI} !^/wp/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ wp/$1
+RewriteRule ^/?$ wp/index.php [L]
+
+# BEGIN WordPress
+RewriteEngine On
+RewriteBase /
+RewriteRule ^wp/index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . wp/index.php [L]
+# END WordPress

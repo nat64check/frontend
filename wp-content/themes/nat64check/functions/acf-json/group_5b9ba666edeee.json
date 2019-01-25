@@ -1,0 +1,218 @@
+{
+  "key": "group_5b9ba666edeee",
+  "title": "Schedule checks",
+  "fields": [
+    {
+      "key": "field_5b9ba69ca8ee9",
+      "label": "",
+      "name": "new_checks",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "schedule",
+        "id": ""
+      },
+      "collapsed": "schedule_servers",
+      "min": 0,
+      "max": 0,
+      "layout": "block",
+      "button_label": "",
+      "sub_fields": [
+        {
+          "key": "field_5b9ba6f8a8eea",
+          "label": "Name",
+          "name": "schedule_name",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "25",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "example",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5b9ba73aa8eeb",
+          "label": "Url",
+          "name": "schedule_url",
+          "type": "url",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "75",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "https:\/\/www.example.com\/"
+        },
+        {
+          "key": "field_5b9ba79da8eec",
+          "label": "Time",
+          "name": "schedule_time",
+          "type": "time_picker",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "25",
+            "class": "",
+            "id": ""
+          },
+          "display_format": "H:i",
+          "return_format": "H:i"
+        },
+        {
+          "key": "field_5b9ba7bfa8eed",
+          "label": "Start",
+          "name": "schedule_start",
+          "type": "date_picker",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "25",
+            "class": "",
+            "id": ""
+          },
+          "display_format": "Y-m-d",
+          "return_format": "Y-m-d",
+          "first_day": 1
+        },
+        {
+          "key": "field_5bab429a9baaa",
+          "label": "End",
+          "name": "schedule_end",
+          "type": "date_picker",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "25",
+            "class": "",
+            "id": ""
+          },
+          "display_format": "Y-m-d",
+          "return_format": "Y-m-d",
+          "first_day": 1
+        },
+        {
+          "key": "field_5bab42bc9baab",
+          "label": "Frequency",
+          "name": "schedule_freq",
+          "type": "select",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "25",
+            "class": "",
+            "id": ""
+          },
+          "choices": {
+            "D": "Every day",
+            "W": "Every week",
+            "M": "Every month",
+            "Y": "Every year"
+          },
+          "default_value": [],
+          "allow_null": 0,
+          "multiple": 0,
+          "ui": 0,
+          "ajax": 0,
+          "return_format": "value",
+          "placeholder": ""
+        },
+        {
+          "key": "field_5bab482df7823",
+          "label": "Private",
+          "name": "schedule_private",
+          "type": "true_false",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "20",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 0,
+          "ui_on_text": "",
+          "ui_off_text": ""
+        },
+        {
+          "key": "field_5bab4848f7824",
+          "label": "Servers",
+          "name": "schedule_servers",
+          "type": "checkbox",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "20",
+            "class": "",
+            "id": ""
+          },
+          "choices": [],
+          "allow_custom": 0,
+          "save_custom": 0,
+          "default_value": [],
+          "layout": "vertical",
+          "toggle": 0,
+          "return_format": "value"
+        },
+        {
+          "key": "field_5bab6bd9ca7be",
+          "label": "id",
+          "name": "schedule_id",
+          "type": "number",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "100",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "min": "",
+          "max": "",
+          "step": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "user"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": 1,
+  "description": "",
+  "modified": 1545047960
+}

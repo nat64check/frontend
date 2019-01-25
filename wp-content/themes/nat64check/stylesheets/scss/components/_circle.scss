@@ -1,0 +1,187 @@
+// ==========================================================================
+// Circles Styles
+// ==========================================================================
+
+
+$big-circle: 150px;
+$circle-size: 140px;
+$circle-background: #D9D9D9;
+$circle-color: #1291D4;
+$inset-size: 129px;
+$inset-color: #fbfbfb;
+$transition-length: 3s;
+
+
+.big-circle-nat {
+  margin: 20px;
+  width: $big-circle;
+  height: $big-circle;
+  background-color: $color-secondary;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 50px;
+
+  @include device-phone-large {
+    margin: 10px;
+  }
+
+  .ko-progress-circle {
+
+    width: $circle-size;
+    height: $circle-size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: $color-secondary;
+    border-radius: 50%;
+
+    .ko-progress-circle__slice, .ko-progress-circle__fill {
+      width: $circle-size;
+      height: $circle-size;
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+      transition: transform $transition-length;
+      border-radius: 50%;
+    }
+
+    .ko-progress-circle__slice {
+      clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+
+      .ko-progress-circle__fill {
+        clip: rect(0px, $circle-size/2, $circle-size, 0px);
+        background-color: $font-color-white;
+      }
+    }
+
+    .ko-progress-circle__overlay {
+      width: $inset-size;
+      height: $inset-size;
+      position: absolute;
+      margin-left: ($circle-size - $inset-size)/2;
+      margin-top: ($circle-size - $inset-size)/2;
+
+      background-color: $color-secondary;
+      border-radius: 50%;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: $font-color-white;
+        font-size: 45px;
+        font-weight: bold;
+        cursor: default;
+      }
+    }
+
+    $i: 0;
+    $increment: 180deg / 100;
+    @while $i <= 100 {
+      &[data-progress='#{$i}'] {
+        .ko-progress-circle__slice.full, .ko-progress-circle__fill {
+          transform: rotate($increment * $i);
+        }
+
+        .ko-progress-circle__fill.ko-progress-circle__bar {
+          transform: rotate($increment * $i * 2);
+        }
+
+        $i: $i + 1;
+      }
+    }
+  }
+}
+
+.big-circle-ipv {
+  margin: 20px;
+  width: $big-circle;
+  height: $big-circle;
+  background-color: $color-secondary;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 50px;
+
+  @include device-phone-large {
+    margin: 10px;
+  }
+
+  .ko-progress-circle {
+
+    width: $circle-size;
+    height: $circle-size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: $color-secondary;
+    border-radius: 50%;
+
+    .ko-progress-circle__slice, .ko-progress-circle__fill {
+      width: $circle-size;
+      height: $circle-size;
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+      transition: transform $transition-length;
+      border-radius: 50%;
+    }
+
+    .ko-progress-circle__slice {
+      clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+
+      .ko-progress-circle__fill {
+        clip: rect(0px, $circle-size/2, $circle-size, 0px);
+        background-color: $font-color-white;
+      }
+    }
+
+    .ko-progress-circle__overlay {
+      width: $inset-size;
+      height: $inset-size;
+      position: absolute;
+      margin-left: ($circle-size - $inset-size)/2;
+      margin-top: ($circle-size - $inset-size)/2;
+
+      background-color: $color-secondary;
+      border-radius: 50%;
+
+      p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: $font-color-white;
+        font-size: 45px;
+        font-weight: bold;
+        cursor: default;
+      }
+    }
+
+    $i: 0;
+    $increment: 180deg / 100;
+    @while $i <= 100 {
+      &[data-progress='#{$i}'] {
+        .ko-progress-circle__slice.full, .ko-progress-circle__fill {
+          transform: rotate($increment * $i);
+        }
+
+        .ko-progress-circle__fill.ko-progress-circle__bar {
+          transform: rotate($increment * $i * 2);
+        }
+
+        $i: $i + 1;
+      }
+    }
+  }
+}
+
+

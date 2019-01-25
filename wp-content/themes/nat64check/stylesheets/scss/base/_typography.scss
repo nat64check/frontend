@@ -1,0 +1,84 @@
+// ==========================================================================
+// Typography Styles
+// ==========================================================================
+@import url($font-url--google);
+@import '../../fonts/fontawesome/scss/font-awesome';
+
+//a { 
+//    color: $color-primary;
+//    text-decoration: none;
+//    
+//    &:visited { 
+//        color: $color-primary;
+//        text-decoration: none;
+//    }
+//    &:hover	{ 
+//        color: $color-secondary; 
+//        text-decoration: none;
+//    }
+//}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  outline: 0;
+  outline: none;
+  text-decoration: none;
+  @include transition();
+  //    &:hover {
+  //        opacity: 0.5;
+  //    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  font-weight: 400;
+  color: $color-grey;
+  margin-bottom: 0;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+h2 {
+  color: $color-grey;
+  margin-bottom: 20px;
+}
+
+p {
+  color: $color-grey;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+h4 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+h5 {
+  font-size: 15px;
+  line-height: 19px;
+}
+
+h6 {
+  font-size: 14px;
+  line-height: 18px;
+}

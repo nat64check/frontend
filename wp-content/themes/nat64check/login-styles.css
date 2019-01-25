@@ -1,0 +1,42 @@
+.login {
+    background: #fff;
+}
+
+#login {
+    background: #fff;
+}
+
+#loginform {
+    box-shadow: none;
+}
+
+#loginform input[type="password"],
+#loginform input[type="text"] {
+    border-radius: 50px;
+    padding: 0 15px;
+    height: 50px;
+}
+
+#loginform input[type="checkbox"] {
+    border-radius: 50px;
+}
+
+#loginform input[type="submit"] {
+    border-radius: 0;
+}
+
+#wp-submit {
+    background: #3DA637 !important;
+}
+
+#wp-submit:hover {
+    background: #FCB725 !important;
+}
+
+#login #nav a {
+    color: #FCB725 !important;
+}
+
+#login #backtoblog a {
+    color: #FCB725 !important;
+}

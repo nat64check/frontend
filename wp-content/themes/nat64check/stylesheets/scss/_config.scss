@@ -1,0 +1,44 @@
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Path to Assets
+$path-rel: '../../graphics';
+$fa-font-path: 'stylesheets/fonts/fontawesome/fonts';
+
+$font-url--google: '//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700';
+$font-primary: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+$font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Font Weights
+$font-light: 300;
+$font-regular: 400;
+$font-bold: 700;
+
+// Color Usage
+$color-primary: #3DA637;
+$color-secondary: #E20000;
+$color-accent: #FCB725;
+$color-grey: #666666;
+$color-highest-grey: #999999;
+$color-high-grey: #C5C5C5;
+$color-mid-grey: #DEDEDE;
+$color-low-grey: #F0F0F0;
+$color-shadow: rgba(#000, .2);
+$black: #000;
+$white: #fff;
+
+// Text
+$font-color-black: #000;
+$font-color-white: #fff;
+$font-size: 16px;
+$line-height: 24px;
+
+// Media queries breakpoints 
+$desktop: '(max-width: 1200px)';
+$tablet: '(max-width: 992px)';
+$phone-large: '(max-width: 767px)';
+$phone-small: '(max-width: 479px)';
+
+// Additional settings
+$border-radius: 3px;

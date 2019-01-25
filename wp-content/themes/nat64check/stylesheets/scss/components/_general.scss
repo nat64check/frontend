@@ -1,0 +1,416 @@
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+
+body,
+html,
+button,
+input,
+select,
+textarea {
+  color: $font-color-black;
+  font-size: $font-size;
+  font-family: $font-primary;
+  line-height: $line-height;
+}
+
+nav ul,
+#sidebar > ul {
+  list-style: none;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.color-primary {
+  color: $color-primary;
+}
+
+.color-secondary {
+  color: $color-secondary;
+}
+
+.color-accent {
+  color: $color-accent;
+}
+
+.post-primary {
+  border: 1px $color-primary solid;
+
+  a {
+    color: $color-primary;
+  }
+}
+
+.post-secondary {
+  border: 1px $color-secondary solid;
+
+  a {
+    color: $color-secondary;
+  }
+}
+
+.post-accent {
+  border: 1px $color-accent solid;
+
+  a {
+    color: $color-accent;
+  }
+}
+
+.color-black {
+  color: $font-color-black !important;
+}
+
+.color-grey {
+  color: $color-grey;
+}
+
+.border-bottom {
+  padding: 5px 0px;
+  border-bottom: 1.5px $color-high-grey solid;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-primary {
+  background-color: $color-primary;
+}
+
+.bg-secondary {
+  background-color: $color-secondary;
+}
+
+.bg-accent {
+  background-color: $color-accent;
+}
+
+.bg-dark {
+  background-color: $color-grey;
+}
+
+.bg-highest {
+  background-color: $color-highest-grey;
+}
+
+.bg-high {
+  background-color: $color-high-grey;
+}
+
+.bg-mid {
+  background-color: $color-mid-grey;
+}
+
+.bg-low {
+  background-color: $color-low-grey;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.button {
+  padding: 10px;
+  color: $font-color-white;
+}
+
+.fa-check {
+  color: $color-primary;
+}
+
+.fa-times {
+  color: $color-secondary;
+}
+
+.fa-minus {
+  color: $color-accent;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.elipsis {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hover-blend {
+  &:hover {
+    .overlay-blend {
+      display: block;
+    }
+  }
+}
+
+.fa-bolt {
+  font-size: 100px;
+  position: absolute;
+  color: #fff;
+  top: 15px;
+  right: 40px;
+}
+
+.fa-globe {
+  margin: 0 3px;
+}
+
+.fa-envelope-o {
+  color: $color-grey;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.font-25 {
+  font-size: 25px;
+}
+
+.event {
+  pointer-events: none;
+}
+
+.search-button {
+  padding: 9px;
+  position: relative;
+  top: 1px;
+
+  input {
+    border: none;
+    padding-left: 29px;
+    @include border-radius(50px);
+  }
+
+  button {
+    border: none;
+    position: absolute;
+    right: 190px;
+    top: 9px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #B9B9B9;
+    background-color: $font-color-white;
+
+    @include border-radius(50px 0px 0px 50px);
+  }
+}
+
+.content-padding {
+  padding: 30px 0;
+}
+
+.content-padding-sm {
+  padding: 20px 0;
+}
+
+.content-margin {
+  margin: 30px 0;
+}
+
+.clickable {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+//.hover {
+//    @include transition();
+//    &:hover { 
+//        opacity: 0.5; 
+//    }
+//}
+.box {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+
+  @include transition();
+
+  &.box-hover,
+  .box-hover {
+    &:hover {
+      @include box-shadow();
+      border-color: transparent;
+      @include transform(translate3d(0, -3px, 0));
+    }
+  }
+}
+
+#respond {
+
+  form {
+    margin: 15px 0px;
+
+    .logged-in-as {
+      display: none;
+    }
+
+    .comment-form-comment {
+      label {
+        display: none;
+      }
+    }
+
+    .form-submit {
+      input {
+        border: none;
+        background-color: $color-mid-grey;
+        padding: 5px 15px;
+        cursor: pointer;
+
+        @include border-radius(50px);
+        @include transition();
+
+        &:hover {
+          background-color: $color-high-grey;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+.width-fill {
+  width: 100%;
+}
+
+.multiselect {
+  position: relative;
+
+  .selectBox {
+    position: relative;
+    border: none;
+    background-color: #F1F1F1;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    padding: 0 15px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    &:after {
+      content: '\f107';
+      font-family: FontAwesome;
+      position: absolute;
+      font-size: 20px;
+      right: 15px;
+      top: 3px;
+      color: #000;
+      -webkit-transition: all 0.2s ease-in-out 0s;
+      -khtml-transition: all 0.2s ease-in-out 0s;
+      -moz-transition: all 0.2s ease-in-out 0s;
+      -ms-transition: all 0.2s ease-in-out 0s;
+      -o-transition: all 0.2s ease-in-out 0s;
+      transition: all 0.2s ease-in-out 0s;
+      z-index: 0;
+    }
+  }
+
+  &.active {
+    box-shadow: 0 3px 5px #ccc;
+    transition: 0.3s all ease;
+
+    .selectBox:after {
+      transform: rotate(180deg);
+    }
+  }
+
+  .checkboxes {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 0 0 3px 3px;
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    transition: 0.3s ease all;
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    width: 100%;
+
+  }
+
+  &.active .checkboxes {
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px;
+    box-shadow: 0 3px 5px #ccc;
+    transition: 0.3s all ease;
+  }
+
+  .checkboxes a {
+    margin-bottom: 5px;
+    display: block;
+  }
+}
+
+.website-flag {
+  img {
+    width: 30px;
+    height: 20px;
+
+    .page-template-page-map & {
+      margin-bottom: -5px;
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: .2;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .2;
+  }
+}
+
+.saving span {
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+  &:nth-child(2) {
+    animation-delay: .2s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: .4s;
+  }
+}
+
+.acf-repeater .acf-row.-collapsed > .acf-fields > .row-name {
+  display: block !important;
+}

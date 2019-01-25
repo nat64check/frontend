@@ -1,0 +1,139 @@
+{
+  "key": "group_5ba234655aeaf",
+  "title": "User register",
+  "fields": [
+    {
+      "key": "field_5ba234f5dc2bc",
+      "label": "First name",
+      "name": "first_name",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "First name",
+      "prepend": "",
+      "append": "",
+      "maxlength": ""
+    },
+    {
+      "key": "field_5ba234fbdc2bd",
+      "label": "Last name",
+      "name": "last_name",
+      "type": "text",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Last name",
+      "prepend": "",
+      "append": "",
+      "maxlength": ""
+    },
+    {
+      "key": "field_5ba2349db6d2f",
+      "label": "Username",
+      "name": "user_login",
+      "type": "text",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Username *",
+      "prepend": "",
+      "append": "",
+      "maxlength": ""
+    },
+    {
+      "key": "field_5ba246de07363",
+      "label": "Password",
+      "name": "user_pass",
+      "type": "password",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "placeholder": "Password *",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_5ba234adb6d31",
+      "label": "Email",
+      "name": "user_email",
+      "type": "email",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "Email *",
+      "prepend": "",
+      "append": ""
+    },
+    {
+      "key": "field_5bd818b7a2690",
+      "label": "",
+      "name": "form_tos",
+      "type": "checkbox",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "100",
+        "class": "flex-container justify-content-end",
+        "id": ""
+      },
+      "choices": {
+        "accepted": "I agree to the <a href=\"https:\/\/nat64check.staging.max.nl\/terms-conditions\/\">Terms & conditions<\/a> *"
+      },
+      "allow_custom": 0,
+      "save_custom": 0,
+      "default_value": [],
+      "layout": "vertical",
+      "toggle": 0,
+      "return_format": "value"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-register.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": 0,
+  "description": "",
+  "modified": 1544014588
+}

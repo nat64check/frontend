@@ -1,0 +1,87 @@
+// ==========================================================================
+// Footer Styles
+// ==========================================================================
+
+#footer-top {
+  padding: 20px 0px 20px;
+
+  .partner {
+    a {
+      img {
+        @include transition();
+
+        &:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+
+  .max {
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+}
+
+#footer-bottom {
+  padding: 50px 0px;
+  color: $font-color-white;
+
+  @include device-phone-large {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 400;
+    padding-bottom: 25px;
+  }
+
+  .widget {
+    @include device-phone-large {
+      margin-bottom: 50px;
+    }
+
+    a, p {
+      color: $font-color-white;
+    }
+
+    p {
+      a {
+        opacity: 1;
+        @include transition();
+
+        &:hover {
+          opacity: 0.7;
+
+        }
+      }
+    }
+
+    #menu-footermenu {
+
+      li {
+
+        &:before {
+          content: "-";
+          text-indent: -5px;
+        }
+
+        a {
+          padding-left: 5px;
+          font-size: 16px;
+          color: $font-color-white;
+          opacity: 1;
+          @include transition();
+
+          &:hover {
+            opacity: 0.7;
+
+          }
+        }
+      }
+    }
+  }
+}

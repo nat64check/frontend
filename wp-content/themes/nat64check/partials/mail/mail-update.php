@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html dir="ltr" style="color:#ffffff;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>"/>
+    <title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+</head>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<div id="wrapper" dir="ltr" style="background-color:#EDF0F3;margin:0;padding:75px 0 75px 0;width:100%">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%"
+           style="background-color:#FFFFFF;width:600px;margin: auto;">
+        <tr>
+            <td align="center" valign="top">
+                <div id="template_header_image" style="padding:30px 0; border-bottom:1px solid #EDF0F3;">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/graphics/logo.png" alt="Logo nat64check"
+                         style="width:auto;height:28px;"/>
+                </div>
+                <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
+                    <tr>
+                        <td align="center" valign="top">
+                            <!-- Body -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="800" id="template_body"
+                                   style="background-color:#FFFFFF;border:0;">
+                                <tr>
+                                    <td valign="top" id="body_content" style="">
+                                        <!-- Content -->
+                                        <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td valign="top" style="padding:45px 45px 30px;">
+                                                    <div id="body_content_inner"
+                                                         style="color:#616161;font-family:Arial,sans-serif;font-weight:normal;font-size:16px;line-height:150%;text-align:left;text-align:center;">
+                                                        <p>&nbsp;</p>
+                                                        <p><?php echo $post_args->message; ?></p>
+                                                        <p>&nbsp;</p>
+                                                        <p>The NAT64check team</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- End Content -->
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- End Body -->
+                        </td>
+                    </tr>
+                </table>
+                <!--
+								<div id="template_header_image" style="padding:15px 0; border-top:1px solid #EDF0F3;color:#616161;font-family:Arial,sans-serif;font-weight:normal;text-align:center;">
+									<p style="font-size:12px;">Voeg <a href="mailto:internationaal@pvda.nl" style="color:#616161;">internationaal@pvda.nl</a> toe aan je contactpersonen om onze e-mails goed te ontvangen.</p>
+								</div>
+				-->
+            </td>
+        </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%"
+           style="background-color:#EDF0F3;width:600px;margin: auto;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- Footer -->
+                <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_footer">
+                    <tr>
+                        <td valign="top">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <!--
+                                    <td colspan="2" valign="middle" id="credit" style="padding:20px 45px 45px;border:0;color:#406884;font-family:Arial;font-size:14px;line-height:100%;text-align:center;line-height:150%;">
+										<p>Deze e-mail is afkomstig van <a href="<?php //echo $post_args->site_url; ?>">Denk mee over Europa</a></p>
+                                    </td>
+-->
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- End Footer -->
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

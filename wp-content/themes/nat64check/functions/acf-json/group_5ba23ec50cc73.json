@@ -1,0 +1,46 @@
+{
+  "key": "group_5ba23ec50cc73",
+  "title": "Connect user",
+  "fields": [
+    {
+      "key": "field_5ba23edba976a",
+      "label": "Connect to a user post",
+      "name": "connect_user",
+      "type": "post_object",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "50",
+        "class": "",
+        "id": ""
+      },
+      "post_type": [
+        "user"
+      ],
+      "taxonomy": [],
+      "allow_null": 0,
+      "multiple": 0,
+      "return_format": "id",
+      "ui": 1
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "user_form",
+        "operator": "==",
+        "value": "edit"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": 1,
+  "description": "",
+  "modified": 1540911460
+}
