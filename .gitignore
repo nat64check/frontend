@@ -49,6 +49,10 @@ atlassian-ide-plugin.xml
 # Editor-based Rest Client
 .idea/httpRequests
 
+# Stuff others don't need to know
+.idea/deployment.xml
+.idea/webServers.xml
+
 ### Stuff that is installed with PHP Composer
 /wp/
 /plugins/
@@ -59,3 +63,4 @@ atlassian-ide-plugin.xml
 
 ### Generated stuff
 /wp-content/themes/nat64check/style.css*
+/.sass-cache/
