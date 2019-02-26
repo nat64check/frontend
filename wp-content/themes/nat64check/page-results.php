@@ -53,14 +53,14 @@ foreach ( $get_args as $k => $v ) {
 	}
 }
 
-$ecxlude     = '';
+$exclude     = '';
 $map_overall = [];
 
 if ( $get_args->server == '' ) {
-	$ecxlude = '&exclude=instanceruns__results__web_response__image';
+	$exclude = '&exclude=instanceruns__results__web_response__image';
 }
 
-$main_request     = json_decode( $nat_api->request( 'testruns/' . $values->test_id . '/?expand=messages,instanceruns__results,trillians' . $ecxlude, $values->token )['body'] );
+$main_request     = json_decode( $nat_api->request( 'testruns/' . $values->test_id . '/?expand=messages,instanceruns__results,trillians' . $exclude, $values->token )['body'] );
 $values->messages = $main_request->messages;
 $instanceruns     = $main_request->instanceruns;
 $test_locations   = $main_request->trillians;
@@ -90,10 +90,12 @@ if ( $get_args->server == '' ) {
 		}
 	}
 
-	$server = '<p class="inline-block"><img src="' . get_stylesheet_directory_uri() . '/graphics/' . strtolower( $server_object->country ) . '.svg" alt=""></p>' . get_option( 'nat_country_list' )[ $server_object->country ];
-	foreach ( $instanceruns as $instancerun ) {
-		if ( $instancerun->trillian_id == $get_args->server ) {
-			$instanceruns = [ $instancerun ];
+	if ( $server_object ) {
+		$server = '<p class="inline-block"><img src="' . get_stylesheet_directory_uri() . '/graphics/' . strtolower( $server_object->country ) . '.svg" alt=""></p>' . get_option( 'nat_country_list' )[ $server_object->country ];
+		foreach ( $instanceruns as $instancerun ) {
+			if ( $instancerun->trillian_id == $get_args->server ) {
+				$instanceruns = [ $instancerun ];
+			}
 		}
 	}
 }
@@ -504,6 +506,8 @@ if ( $values->results ) {
 						}
 						?>
                         <div id="progressbar-nat">
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownAttribute -->
                             <div class="progress" value="<?php echo $av_nat_res; ?>"></div>
                         </div>
                     </div>
@@ -519,6 +523,8 @@ if ( $values->results ) {
 						}
 						?>
                         <div id="progressbar-ipv">
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownAttribute -->
                             <div class="progress" value="<?php echo $av_v6_res; ?>"></div>
                         </div>
                     </div>
@@ -564,7 +570,7 @@ if ( $values->results ) {
 						?>
                         <div class="row result-row <?php echo $bg_color; ?>">
                             <div class="col-sm-6">
-                                <a class="color-grey elipsis" href="<?php echo $url; ?>"
+                                <a class="color-grey ellipsis" href="<?php echo $url; ?>"
                                    target="_blank"><?php echo $url; ?></a>
                             </div>
                             <div class="col-sm-2 ipv4-compatible text-center">
@@ -670,6 +676,8 @@ if ( $values->results ) {
                 <div class="col col-sm-3">
                     <div class="loading-ipv4 inline-block">
                         <div class="title">IPv4</div>
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                             <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                     fill="<?php echo $v4_color; ?>"></circle>
@@ -692,6 +700,8 @@ if ( $values->results ) {
                 <div class="col col-sm-3">
                     <div class="loading-nat inline-block">
                         <div class="title">NAT64</div>
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                             <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                     fill="<?php echo $nat_color; ?>"></circle>
@@ -714,6 +724,8 @@ if ( $values->results ) {
                 <div class="col col-sm-3">
                     <div class="loading-ipv6 inline-block">
                         <div class="title">IPv6</div>
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                             <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                     fill="<?php echo $v6_color; ?>"></circle>
@@ -747,6 +759,8 @@ if ( $values->results ) {
                         </div>
                     </div>
                     <div class="col-sm-6">
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <svg version="1.2" xmlns="http://www.w3.org/2000/svg" class="graph" aria-labelledby="title"
                              role="img">
                             <title id="title">IPv4 pings</title>
@@ -761,6 +775,8 @@ if ( $values->results ) {
 								-->
                                 <text x="300" y="220" class="label-title">IPv4 Ping</text>
                             </g>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownAttribute -->
                             <g class="data" data-setname="Our first data set">
 								<?php
 								$v4_ping_object = '';
@@ -800,6 +816,8 @@ if ( $values->results ) {
 												}
 
 												?>
+                                                <!-- TODO: fix invalid HTML -->
+                                                <!--suppress HtmlUnknownAttribute -->
                                                 <circle fill="<?php echo $circle_color; ?>" fill-opacity="0.5" cx="300"
                                                         cy="<?php echo 200 - $v4_result->latency; ?>"
                                                         data-value="<?php echo $v4_result->latency; ?>" r="15"></circle>
@@ -814,6 +832,8 @@ if ( $values->results ) {
 												$circle_color = '#FCB725';
 											}
 											?>
+                                            <!-- TODO: fix invalid HTML -->
+                                            <!--suppress HtmlUnknownAttribute -->
                                             <circle fill="<?php echo $circle_color; ?>" cx="300"
                                                     cy="<?php echo 200 - $ipv4_avg; ?>"
                                                     data-value="<?php echo $ipv4_avg; ?>" r="15"></circle>
@@ -831,6 +851,8 @@ if ( $values->results ) {
                         </svg>
                     </div>
                     <div class="col-sm-6">
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <svg version="1.2" xmlns="http://www.w3.org/2000/svg" class="graph" aria-labelledby="title"
                              role="img">
                             <title id="title">IPv6 pings</title>
@@ -845,6 +867,8 @@ if ( $values->results ) {
 								-->
                                 <text x="300" y="220" class="label-title">IPv6 Ping</text>
                             </g>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownAttribute -->
                             <g class="data" data-setname="Our first data set">
 								<?php
 								foreach ( $values->results as $ping ) {
@@ -879,6 +903,8 @@ if ( $values->results ) {
 												$circle_color = '#FCB725';
 											}
 											?>
+                                            <!-- TODO: fix invalid HTML -->
+                                            <!--suppress HtmlUnknownAttribute -->
                                             <circle fill="<?php echo $circle_color; ?>" fill-opacity="0.5" cx="300"
                                                     cy="<?php echo 200 - $v6_result->latency; ?>"
                                                     data-value="<?php echo $v6_result->latency; ?>" r="15"></circle>
@@ -893,6 +919,8 @@ if ( $values->results ) {
 											$circle_color = '#FCB725';
 										}
 										?>
+                                        <!-- TODO: fix invalid HTML -->
+                                        <!--suppress HtmlUnknownAttribute -->
                                         <circle fill="<?php echo $circle_color; ?>" cx="300"
                                                 cy="<?php echo 200 - $ipv6_avg; ?>"
                                                 data-value="<?php echo $ipv6_avg; ?>" r="15"></circle>
@@ -996,7 +1024,8 @@ if ( $values->results ) {
                         <div class="locations-map">
 							<?php
 							if ( $get_args->server == '' ) {
-								$test_locations = $test_locations;
+								// TODO: WTF?
+								// $test_locations = $test_locations;
 							} else {
 								foreach ( $test_locations as $test_location ) {
 									if ( $test_location->id == $get_args->server ) {
@@ -1052,7 +1081,7 @@ if ( $values->results ) {
                             This website, <?php echo '<strong>' . $main_request->url . '</strong>' ?>,
                             <!--						has some problems with <?php //echo '<strong>NAT64</strong>'
 							?> and <?php //echo '<strong>IPv6</strong>'
-							?> connectivity. Here is a summary of the issues you'r experiencing and the potential soloutions:-->
+                            ?> connectivity. Here is a summary of the issues you'r experiencing and the potential solutions:-->
                         </p>
                     </div>
                     <div>
@@ -1072,9 +1101,14 @@ if ( $values->results ) {
 							}
 							?>
                             <div class="summary faq-item">
-                                <h3 class=" bg-low">
+                                <h3 class="bg-low">
+                                    <!-- TODO: fix invalid HTML -->
+                                    <!--suppress HtmlUnknownTag -->
                                     <div class="problem <?php echo $class; ?> inline-block"><?php echo $count ++; ?></div>
-                                    <p class="inline-block"><?php echo $message->message; ?> </p></h3>
+                                    <!-- TODO: fix invalid HTML -->
+                                    <!--suppress HtmlUnknownTag -->
+                                    <p class="inline-block"><?php echo $message->message; ?> </p>
+                                </h3>
                             </div>
 							<?php
 						}

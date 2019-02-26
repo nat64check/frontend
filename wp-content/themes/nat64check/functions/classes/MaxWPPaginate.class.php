@@ -3,10 +3,10 @@
 class MaxWPPaginate {
 	static function show( $params = [] ) {
 		$params = array_merge( [
-			'firstText'  => 'eerste',
-			'lastText'   => 'laatste',
-			'nextText'   => 'volgende',
-			'prevText'   => 'vorige',
+			'firstText'  => 'first',
+			'lastText'   => 'last',
+			'nextText'   => 'next',
+			'prevText'   => 'previous',
 			'pagesLimit' => 10,
 		], $params );
 
@@ -18,7 +18,6 @@ class MaxWPPaginate {
 
 		global $wp_query;
 
-		$postCount    = 0;
 		$postsPerPage = get_option( 'posts_per_page' );
 
 		if ( isset( $wp_query->query_vars['posts_per_page'] ) && $wp_query->query_vars['posts_per_page'] > 0 ) {
@@ -29,7 +28,6 @@ class MaxWPPaginate {
 
 		$limit = apply_filters( 'max_wp_paginate_display_pages_limit', $params['pagesLimit'] );
 		$start = 1;
-		$end   = 8;
 
 		if ( is_search() || is_category() || is_tax() || is_tag() || is_post_type_archive() || is_date() || is_author() ) {
 			$postCount = $wp_query->found_posts;

@@ -60,6 +60,8 @@ define( 'LOGGED_IN_SALT', getenv( 'LOGGED_IN_SALT' ) );
 define( 'NONCE_KEY', getenv( 'NONCE_KEY' ) );
 define( 'NONCE_SALT', getenv( 'NONCE_SALT' ) );
 
+define( 'GOOGLE_API_KEY', getenv( 'GOOGLE_API_KEY' ) );
+
 /**#@-*/
 
 /**

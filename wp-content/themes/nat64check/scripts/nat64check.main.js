@@ -8,83 +8,84 @@ var nat_main = {
     init: function () {
         var self = this;
 
-        jQuery('.multiselect .selectBox').click(function (ev) {
+        jQuery('.multiselect .selectBox').on('click', function (ev) {
             self.toggle_select(ev, jQuery(this));
         });
 
-        jQuery('.block-allsearches #main-search button').click(function (ev) {
+        jQuery('.block-allsearches #main-search button').on('click', function (ev) {
             self.form_submit(ev, jQuery(this))
         });
-        jQuery('.toggle-nav').click(function (ev) {
+        jQuery('.toggle-nav').on('click', function (ev) {
             self.toggle_nav(ev, jQuery(this));
         });
 
-        jQuery('.user-setting i').click(function (ev) {
+        jQuery('.user-setting i').on('click', function (ev) {
             self.user_setting(ev, jQuery(this));
         });
 
         self.click_swap('#add-schedule', '#acf-form .acf-actions a');
 
-        jQuery('#server-select label').click(function (ev) {
+        jQuery('#server-select label').on('click', function (ev) {
             self.checkbox_swap(ev, jQuery(this));
         });
 
         jQuery('.user-register #acf-form .acf-form-submit input').val('Register!');
 
-        jQuery('#test-filters .buttons-row a').click(function (ev) {
+        jQuery('#test-filters .buttons-row a').on('click', function (ev) {
             self.test_filters(ev, jQuery(this));
         });
 
-        jQuery('#paginator li a').click(function (ev) {
+        jQuery('#paginator li a').on('click', function (ev) {
             self.paging_filters(ev, jQuery(this));
         });
 
-        jQuery('#server-select a').click(function (ev) {
+        jQuery('#server-select a').on('click', function (ev) {
             self.choose_server(ev, jQuery(this));
         });
 
-        jQuery('#server-form .summary-button a').click(function (ev) {
+        jQuery('#server-form .summary-button a').on('click', function (ev) {
             self.choose_server(ev, jQuery(this));
         });
 
-        jQuery('#change-pass-form a').click(function (ev) {
+        jQuery('#change-pass-form a').on('click', function (ev) {
 
             self.change_pass(ev, jQuery(this));
         });
 
-        jQuery('.home #server-select .checkboxes input').click(function (ev) {
+        jQuery('.home #server-select .checkboxes input').on('click', function (ev) {
             self.select_name_change(ev, jQuery(this));
         });
 
         self.page_loader();
 
-        jQuery('#all-res-button').click(function (ev) {
+        jQuery('#all-res-button').on('click', function (ev) {
             self.toggle_all_resources(ev, jQuery(this));
         });
 
         if (jQuery('body').hasClass('page-template-generating-results')) {
-            jQuery('#header-bottom .checked-website-button a').css('pointer-events', 'none');
+            var link = jQuery('#header-bottom .checked-website-button a');
+            link.css('pointer-events', 'none');
             self.args.url_test = jQuery('#get_url_test').val();
             self.args.hostname = jQuery('#get_hostname').val();
             self.ajax(self.args, self.form_result);
-            jQuery('#header-bottom .checked-website-button a').click(function (ev) {
+            link.on('click', function (ev) {
                 ev.preventDefault();
                 location.reload();
             });
         }
 
-        jQuery('.user-checks .acf-field-5b9ba6f8a8eea .acf-input input').each(function (index) {
+        jQuery('.user-checks .acf-field-5b9ba6f8a8eea .acf-input input').each(function () {
             var name = jQuery(this).val();
             jQuery(this).closest('.acf-fields').prepend('<div class="row-name"><h2>Name: </h2><span>' + name + '</span></div>');
         });
 
         jQuery('.user-checks .acf-actions a').html('<div id="add-schedule">Add schedule <i class="fa fa-plus-circle" aria-hidden="true"></i>');
 
-        jQuery('.acf-row-handle .acf-icon').click(function (ev) {
+        jQuery('.acf-row-handle .acf-icon').on('click', function (ev) {
             self.remove_rowname(ev, jQuery(this));
         });
 
-        jQuery('.user-checks .acf-repeater .acf-row').each(function (index) {
+        jQuery('.user-checks .acf-repeater .acf-row').each(function () {
             if (!jQuery(this).hasClass('acf-clone')) {
                 if (!jQuery(this).hasClass('-collapsed')) {
                     jQuery(this).addClass('-collapsed');
@@ -105,7 +106,7 @@ var nat_main = {
         el.prev().click();
     },
 
-    toggle_all_resources: function (ev, el) {
+    toggle_all_resources: function (ev) {
         ev.preventDefault();
         jQuery('.all-res-dropdown').toggleClass('active');
         jQuery('#all-res-button').toggleClass('active');
@@ -115,23 +116,24 @@ var nat_main = {
         var clicked = el.next();
         var server_count = jQuery('.home #server-select').data('server_count');
         clicked.toggleClass('checked');
-        if (server_count == jQuery('.checked').length) {
+        var checked = jQuery('.checked');
+        if (server_count === checked.length) {
             current.text('All locations');
-        } else if (jQuery('.checked').length > 1) {
-            current.text(jQuery('.checked').length + ' Servers');
+        } else if (checked.length > 1) {
+            current.text(checked.length + ' Servers');
         } else if (jQuery('.home #server-select .checkboxes input').next().hasClass('checked')) {
             current.text(jQuery('.home #server-select .checkboxes .checked').text());
         } else {
             current.text('All locations');
         }
     },
-    change_pass: function (ev, el) {
+    change_pass: function (ev) {
         ev.preventDefault();
 
         var current_pass = jQuery('#change-pass-form .current-pass').val();
         var new_pass = jQuery('#change-pass-form .new-pass').val();
         if (current_pass && new_pass) {
-            jQuery('#change-pass-form').submit();
+            jQuery('#change-pass-form').trigger('submit');
         } else {
             jQuery('#change-pass-form .input').css('display', 'block');
         }
@@ -146,7 +148,7 @@ var nat_main = {
 
         jQuery('#server-select input').val(el.attr('href').replace('#', ''));
 
-        jQuery('#server-form form').submit();
+        jQuery('#server-form form').trigger('submit');
     },
 
     test_filters: function (ev, el) {
@@ -158,22 +160,22 @@ var nat_main = {
         } else {
             jQuery('#paginator .paging-value').val(el.html().toLowerCase());
         }
-        jQuery('#test-filters').submit();
+        jQuery('#test-filters').trigger('submit');
     },
     paging_filters: function (ev, el) {
         //ev.preventDefault();
 
         jQuery('#paginator .paging-value').val(el.html().toLowerCase());
 
-        jQuery('#test-filters').submit();
+        jQuery('#test-filters').trigger('submit');
     },
 
     click_swap: function (src, target) {
-        jQuery(src).unbind('click');
-        jQuery(src).click(function (ev) {
+        jQuery(src).off('click');
+        jQuery(src).on('click', function (ev) {
             ev.preventDefault();
 
-            jQuery(target).click();
+            jQuery(target).trigger('click');
 
             jQuery('body').css('cursor', 'progress');
             jQuery(src).css('pointer-events', 'none');
@@ -200,16 +202,18 @@ var nat_main = {
         var self = nat_main;
 
         jQuery('#response').html(data);
-        jQuery('#header-bottom .checked-website-button a').css('pointer-events', 'auto');
-        jQuery('#header-bottom .checked-website-button a').css('background-color', '#3DA637');
-        jQuery('#header-bottom .checked-website-button a').html('<i class="fa fa-check inline-block font-25 color-white"></i> Check again');
+
+        var link = jQuery('#header-bottom .checked-website-button a');
+        link.css('pointer-events', 'auto');
+        link.css('background-color', '#3DA637');
+        link.html('<i class="fa fa-check inline-block font-25 color-white"></i> Check again');
         self.args.init = false;
         setTimeout(function () {
             window.location.href = jQuery('#result_url').attr('href')
         }, 5000);
 
     },
-    ajax: function (args, succes) {
+    ajax: function (args, success) {
         var self = this;
 
         if (self.working) {
@@ -222,10 +226,10 @@ var nat_main = {
             type: 'GET',
             data: args,
             success: function (data) {
-                succes(data);
+                success(data);
             }
         });
-    },
+    }
 };
 
 jQuery(function () {

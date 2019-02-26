@@ -14,7 +14,7 @@ class max_wp_comments {
 	static function recaptcha_show( $args = [] ) {
 		$args = (object) array_merge( [
 			'style' => [],
-			'key'   => maxwp_get_option( 'recaptcha_key' ),
+			'key'   => max_wp_get_option( 'recaptcha_key' ),
 		], $args );
 
 		$css = '';
@@ -41,7 +41,7 @@ class max_wp_comments {
 		$fields = [
 			[
 				'type'  => 'checkbox',
-				'title' => 'Reacties standaard gesloten',
+				'title' => 'Responses closed by default',
 				'name'  => 'comments_default_off',
 			],
 			[
@@ -55,11 +55,11 @@ class max_wp_comments {
 		];
 
 		$pages[] = [
-			'title'    => 'Instellingen',
+			'title'    => 'Settings',
 			'parent'   => 'edit-comments.php',
 			'sections' => [
-				'Instellingen' => [
-					'desc'   => 'Recaptcha key en secret kan hier aangemaakt worden: <a href="https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a>',
+				'Settings' => [
+					'desc'   => 'Recaptcha key and secret can be generated here: <a href="https://www.google.com/recaptcha/" target="_blank">https://www.google.com/recaptcha/</a>',
 					'fields' => $fields,
 				],
 			],
@@ -68,8 +68,11 @@ class max_wp_comments {
 		return $pages;
 	}
 
-	function default_comment_status( $status, $post_type ) {
-		if ( maxwp_get_option( 'comments_default_off' ) ) {
+	function default_comment_status(
+		$status, /** @noinspection PhpUnusedParameterInspection */
+		$post_type
+	) {
+		if ( max_wp_get_option( 'comments_default_off' ) ) {
 			$status = 'closed';
 		}
 
@@ -78,7 +81,7 @@ class max_wp_comments {
 
 	function recaptcha_check() {
 		if ( $_SERVER['REQUEST_URI'] == '/wp-comments-post.php' && count( $_POST ) && ! self::recaptcha_valid() ) {
-			wp_die( '<strong>FOUT</strong> Het lijk erop dat u een spamreactie probeert te versturen.' );
+			wp_die( '<strong>ERROR</strong> You seem to want to send spam.' );
 		}
 	}
 
@@ -87,7 +90,7 @@ class max_wp_comments {
 			return true;
 		}
 
-		$recaptcha_secret = apply_filters( 'max_wp_comments_recaptcha_secret', maxwp_get_option( 'recaptcha_secret' ) );
+		$recaptcha_secret = apply_filters( 'max_wp_comments_recaptcha_secret', max_wp_get_option( 'recaptcha_secret' ) );
 
 		$allow = true;
 
@@ -125,26 +128,26 @@ class max_wp_comments {
 			'order'   => 'ASC',
 		] );
 
-		$orderd_comments = [];
+		$ordered_comments = [];
 
 		foreach ( $comments as $comment ) {
 
 			if ( $comment->comment_parent == 0 ) {
 				$comment->comment_depth = 1;
 
-				$orderd_comments[] = $comment;
+				$ordered_comments[] = $comment;
 			}
 
 			foreach ( $comments as $comment_child ) {
 				if ( $comment_child->comment_parent == $comment->comment_ID ) {
 					$comment_child->comment_depth = $this->comment_depth( $comment_child->comment_ID );
 
-					$orderd_comments[] = $comment_child;
+					$ordered_comments[] = $comment_child;
 				}
 			}
 		}
 
-		return $orderd_comments;
+		return $ordered_comments;
 	}
 
 	function comment_depth( $comment_id = false ) {

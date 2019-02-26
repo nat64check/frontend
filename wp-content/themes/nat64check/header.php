@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" class="<?php do_action( 'html_class' ); ?>" <?php language_attributes(); ?>>
-<!-- 
-    Realisatie:
-    MAX
-    Apeldoorn
-    W: www.max.nl
-    E: info@max.nl
-    T: 055-5270270
--->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title><?php wp_title( ' | ' ); ?></title>
@@ -16,6 +8,8 @@
 </head>
 
 <?php
+global $nat_api;
+
 $label   = '<i class="fa fa-user color-white" aria-hidden="true"></i> Login';
 $link_to = wp_login_url();
 $token   = '';
@@ -25,7 +19,7 @@ if ( is_user_logged_in() ) {
 	$user_dashboard = get_permalink( max_wp_user_prop( 'connect_user' ) );
 	$link_to        = $user_dashboard;
 }
-global $nat_api;
+
 ?>
 
 <body <?php body_class(); ?>>

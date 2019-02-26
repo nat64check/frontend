@@ -3,7 +3,7 @@
 // ==========================================================================
 
 #footer-top {
-  padding: 20px 0px 20px;
+  padding: 20px 0 20px;
 
   .partner {
     a {
@@ -26,7 +26,7 @@
 }
 
 #footer-bottom {
-  padding: 50px 0px;
+  padding: 50px 0;
   color: $font-color-white;
 
   @include device-phone-large {

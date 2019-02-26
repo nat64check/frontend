@@ -43,15 +43,15 @@ function RichMarker(opt_options) {
      */
     this.dragging_ = false;
 
-    if (opt_options['visible'] == undefined) {
+    if (opt_options['visible'] === undefined) {
         opt_options['visible'] = true;
     }
 
-    if (opt_options['shadow'] == undefined) {
+    if (opt_options['shadow'] === undefined) {
         opt_options['shadow'] = '7px -3px 5px rgba(88,88,88,0.7)';
     }
 
-    if (opt_options['anchor'] == undefined) {
+    if (opt_options['anchor'] === undefined) {
         opt_options['anchor'] = RichMarkerPosition['BOTTOM'];
     }
 
@@ -65,7 +65,7 @@ window['RichMarker'] = RichMarker;
 /**
  * Returns the current visibility state of the marker.
  *
- * @return {boolean} The visiblity of the marker.
+ * @return {boolean} The visibility of the marker.
  */
 RichMarker.prototype.getVisible = function () {
     return /** @type {boolean} */ (this.get('visible'));
@@ -74,9 +74,9 @@ RichMarker.prototype['getVisible'] = RichMarker.prototype.getVisible;
 
 
 /**
- * Sets the visiblility state of the marker.
+ * Sets the visibility state of the marker.
  *
- * @param {boolean} visible The visiblilty of the marker.
+ * @param {boolean} visible The visibility of the marker.
  */
 RichMarker.prototype.setVisible = function (visible) {
     this.set('visible', visible);
@@ -108,7 +108,7 @@ RichMarker.prototype['setFlat'] = RichMarker.prototype.setFlat;
 
 
 /**
- * If the makrer is flat or not.
+ * If the marker is flat or not.
  *
  * @return {boolean} True the marker is flat.
  */
@@ -206,7 +206,7 @@ RichMarker.prototype['getZIndex'] = RichMarker.prototype.getZIndex;
  */
 RichMarker.prototype.zIndex_changed = function () {
     if (this.getZIndex() && this.ready_) {
-        this.markerWrapper_.style.zIndex = this.getZIndex();
+        this.markerWrapper_.style.zIndex = this.getZIndex().toString();
     }
 };
 RichMarker.prototype['zIndex_changed'] = RichMarker.prototype.zIndex_changed;
@@ -250,7 +250,7 @@ RichMarker.prototype['draggable_changed'] =
 
 
 /**
- * Gets the postiton of the marker.
+ * Gets the position of the marker.
  *
  * @return {google.maps.LatLng} The position of the marker.
  */
@@ -322,7 +322,7 @@ RichMarker.prototype['anchor_changed'] = RichMarker.prototype.anchor_changed;
 RichMarker.prototype.htmlToDocumentFragment_ = function (htmlString) {
     var tempDiv = document.createElement('DIV');
     tempDiv.innerHTML = htmlString;
-    if (tempDiv.childNodes.length == 1) {
+    if (tempDiv.childNodes.length === 1) {
         return /** @type {!Node} */ (tempDiv.removeChild(tempDiv.firstChild));
     } else {
         var fragment = document.createDocumentFragment();
@@ -346,7 +346,8 @@ RichMarker.prototype.removeChildren_ = function (node) {
     }
 
     var child;
-    while (child = node.firstChild) {
+    while (node.firstChild) {
+        child = node.firstChild;
         node.removeChild(child);
     }
 };
@@ -394,7 +395,8 @@ RichMarker.prototype.content_changed = function () {
 
         var that = this;
         var images = this.markerContent_.getElementsByTagName('IMG');
-        for (var i = 0, image; image = images[i]; i++) {
+        for (var i = 0, image; images[i]; i++) {
+            image = images[i];
             // By default, a browser lets a image be dragged outside of the browser,
             // so by calling preventDefault we stop this behaviour and allow the image
             // to be dragged around the map and now out of the browser and onto the
@@ -439,28 +441,28 @@ RichMarker.prototype.setCursor_ = function (whichCursor) {
     var cursor = '';
     if (navigator.userAgent.indexOf('Gecko/') !== -1) {
         // Moz has some nice cursors :)
-        if (whichCursor == 'dragging') {
+        if (whichCursor === 'dragging') {
             cursor = '-moz-grabbing';
         }
 
-        if (whichCursor == 'dragready') {
+        if (whichCursor === 'dragready') {
             cursor = '-moz-grab';
         }
 
-        if (whichCursor == 'draggable') {
+        if (whichCursor === 'draggable') {
             cursor = 'pointer';
         }
     } else {
-        if (whichCursor == 'dragging' || whichCursor == 'dragready') {
+        if (whichCursor === 'dragging' || whichCursor === 'dragready') {
             cursor = 'move';
         }
 
-        if (whichCursor == 'draggable') {
+        if (whichCursor === 'draggable') {
             cursor = 'pointer';
         }
     }
 
-    if (this.markerWrapper_.style.cursor != cursor) {
+    if (this.markerWrapper_.style.cursor !== cursor) {
         this.markerWrapper_.style.cursor = cursor;
     }
 };
@@ -468,7 +470,7 @@ RichMarker.prototype.setCursor_ = function (whichCursor) {
 /**
  * Start dragging.
  *
- * @param {Event} e The event.
+ * @param {DragEvent} e The event.
  */
 RichMarker.prototype.startDrag = function (e) {
     if (!this.getDraggable()) {
@@ -538,7 +540,7 @@ RichMarker.prototype.stopDrag = function () {
 /**
  * Handles the drag event.
  *
- * @param {Event} e The event.
+ * @param {DragEvent} e The event.
  */
 RichMarker.prototype.drag = function (e) {
     if (!this.getDraggable() || !this.dragging_) {
@@ -644,7 +646,8 @@ RichMarker.prototype.addDraggingListeners_ = function () {
  */
 RichMarker.prototype.removeDraggingListeners_ = function () {
     if (this.draggingListeners_) {
-        for (var i = 0, listener; listener = this.draggingListeners_[i]; i++) {
+        for (var i = 0, listener; this.draggingListeners_[i]; i++) {
+            listener = this.draggingListeners_[i];
             google.maps.event.removeListener(listener);
         }
         this.draggingListeners_.length = 0;
@@ -757,7 +760,7 @@ RichMarker.prototype['onAdd'] = RichMarker.prototype.onAdd;
 
 
 /**
- * Impelementing the interface.
+ * Implementing the interface.
  */
 RichMarker.prototype.draw = function () {
     if (!this.ready_ || this.dragging_) {
@@ -781,11 +784,11 @@ RichMarker.prototype.draw = function () {
     var height = this.markerContent_.offsetHeight;
     var width = this.markerContent_.offsetWidth;
 
-    if (width != this.get('width')) {
+    if (width !== this.get('width')) {
         this.set('width', width);
     }
 
-    if (height != this.get('height')) {
+    if (height !== this.get('height')) {
         this.set('height', height);
     }
 };

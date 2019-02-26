@@ -10,7 +10,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	];
 	wp_localize_script( 'nat.locations', 'nat_main', $args );
 
-	wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?key=' . NAT_GOOGLE_API_KEY . '&libraries=places' );
+	wp_enqueue_script( 'google-maps', '//maps.googleapis.com/maps/api/js?key=' . GOOGLE_API_KEY . '&libraries=places' );
 
 	wp_enqueue_script( 'circle.progress', get_stylesheet_directory_uri() . '/scripts/circle.progress.js', [ 'jquery' ], false, false );
 	wp_enqueue_script( 'bar.progress', get_stylesheet_directory_uri() . '/scripts/bar.progress.js', [ 'jquery' ], false, false );

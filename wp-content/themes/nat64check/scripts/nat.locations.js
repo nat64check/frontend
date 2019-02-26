@@ -4,7 +4,8 @@ var nat_locaties = {
     init: function () {
         var self = this;
 
-        jQuery(window).resize(function () {
+        // noinspection JSCheckFunctionSignatures
+        jQuery(window).on('resize', function () {
             self.center_map();
         });
 
@@ -16,7 +17,7 @@ var nat_locaties = {
 
         var map_el = jQuery('.locations-map');
 
-        if (map_el.length == 0) {
+        if (map_el.length === 0) {
             return;
         }
 
@@ -277,14 +278,14 @@ var nat_locaties = {
         var cluster_icon = 'cluster_nat.png';
 
         var style_object = [{
-            url: maxwp_info.style_uri + 'graphics/' + cluster_icon,
+            url: '/wp-content/themes/nat64check/graphics/' + cluster_icon,
             height: 52,
             width: 50,
             textColor: '#FFFFFF',
             textSize: 10
         }];
 
-        var markerCluster = new MarkerClusterer(
+        new MarkerClusterer(
             self.map,
             self.map.markers,
             {
@@ -298,17 +299,17 @@ var nat_locaties = {
     add_marker: function (marker) {
         var self = this;
         var icon = '';
-        if (marker.data('bg') == 'bg-primary') {
+        if (marker.data('bg') === 'bg-primary') {
             icon = 'check color-white';
-        } else if (marker.data('bg') == 'bg-secondary') {
+        } else if (marker.data('bg') === 'bg-secondary') {
             icon = 'times color-white';
-        } else if (marker.data('bg') == 'world') {
+        } else if (marker.data('bg') === 'world') {
             icon = 'globe color-white bg-dark';
         } else {
             icon = 'minus color-white';
         }
 //		console.log( marker.data( 'server' ) );
-        var marker = new RichMarker({
+        var rich_marker = new RichMarker({
             position: new google.maps.LatLng(marker.data('lat'), marker.data('lng')),
             shadow: false,
             content: '<div class="location-marker"><span class="nat-marker ' + marker.data('bg') + ' "><i class="fa fa-' + icon + '" aria-hidden="true"></i></span><div>',
@@ -316,16 +317,16 @@ var nat_locaties = {
             redirect: marker.data('redirect'),
             anchor: RichMarkerPosition['TOP']
         });
-        google.maps.event.addDomListener(marker, 'click', function () {
+        google.maps.event.addDomListener(rich_marker, 'click', function () {
             if (!jQuery('body').hasClass('page-template-page-map')) {
-                window.location.href = marker.redirect;
+                window.location.href = rich_marker.redirect;
             }
 
         });
-        self.map.markers.push(marker);
+        self.map.markers.push(rich_marker);
 
-        if (marker.html) {
-            google.maps.event.addListener(marker, 'click', function () {
+        if (rich_marker.html) {
+            google.maps.event.addListener(rich_marker, 'click', function () {
 
                 self.window.setContent(this.html);
                 self.window.open(self.map, this);
@@ -344,7 +345,7 @@ var nat_locaties = {
                 );
             });
 
-            if (self.map.markers.length == 1) {
+            if (self.map.markers.length === 1) {
                 self.map.setCenter(bounds.getCenter());
                 self.map.setZoom(5);
             } else {

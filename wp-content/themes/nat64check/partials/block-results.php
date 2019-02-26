@@ -5,8 +5,8 @@
 //$request = json_decode( $nat_api->request( 'testruns/'.$test_id.'/', 'user' )['body'] );
 //$scores = (object)array(
 //	'image'		=> $request->image_score,
-//	'ressource'	=> $request->resource_score,
-//	'overal'	=> $request->overall_score,
+//	'resource'	=> $request->resource_score,
+//	'overall'	=> $request->overall_score,
 //);
 ?>
 <div class="block-results bg-high">

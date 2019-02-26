@@ -8,7 +8,7 @@
                 <div class="col-sm-8">
                     <div class="content">
                         <h1><?php echo "{$wp_query->post_count} van {$wp_query->found_posts}";
-							echo $wp_query->post_count == 1 ? ' zoekresultaat' : ' zoekresultaten'; ?> op
+	                        echo $wp_query->post_count == 1 ? ' result' : ' results'; ?> op
                             "<?php echo get_search_query(); ?>"</h1>
 						<?php
 						if ( have_posts() ) {
@@ -17,7 +17,7 @@
 								?>
                                 <div <?php post_class( 'search-result' ) ?>>
                                     <h2><a href="<?php echo get_permalink(); ?>"
-                                           title="Lees verder"><?php the_title(); ?></a></h2>
+                                           title="More…"><?php the_title(); ?></a></h2>
 									<?php the_excerpt(); ?>
                                 </div>
 								<?php
@@ -26,7 +26,7 @@
 							get_template_part( 'partials/pager' );
 						} else {
 							?>
-                            <p>Uw zoekactie heeft geen resultaten opgeleverd.</p>
+                            <p>No results found.</p>
 							<?php
 						}
 						?>

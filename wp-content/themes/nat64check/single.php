@@ -20,7 +20,7 @@ if ( $comments_count = get_comments_number() ) {
                                 <div <?php post_class() ?>>
                                     <div class="single">
                                         <h1><?php the_title(); ?></h1>
-                                        Updated <?php echo the_modified_time( 'd/m/Y' ); ?> |
+                                        Updated <?php the_modified_time( 'd/m/Y' ); ?> |
                                         by <?php echo get_the_author() ?> | Comments (<?php echo $counters->comments; ?>
                                         )
 										<?php

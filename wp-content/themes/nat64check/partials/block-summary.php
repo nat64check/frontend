@@ -10,16 +10,22 @@ $blog_id = get_category_by_slug( 'blog' )->term_id
                     <h2>SUMMARY</h2>
                 </div>
                 <div class="content">
+                    <!-- TODO: fix example and use real URL -->
                     <p>This website,<?php echo '<strong>www.example</strong>' ?>, has some problems
                         with <?php echo '<strong>NAT64</strong>' ?> and <?php echo '<strong>IPv6</strong>' ?>
                         connectivity. Here is a summary of the issues you'r experiencing and the potential
-                        soloutions:</p>
+                        solutions:</p>
                 </div>
                 <div class="summary">
                     <h3 class="bg-low">
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownTag -->
                         <div class="problem bg-secondary inline-block">1</div>
-                        <p class="inline-block">Broadcasting false IPv6 addresses </p><i
-                                class="fa fa-caret-down inline-block" aria-hidden="true"></i></h3>
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownTag -->
+                        <p class="inline-block">Broadcasting false IPv6 addresses </p>
+                        <i class="fa fa-caret-down inline-block" aria-hidden="true"></i>
+                    </h3>
                 </div>
                 <div class="summary-print inline-block">
                     <a href="#" class="button bg-highest"><i class="fa fa-print" aria-hidden="true"></i>Print</a>
@@ -35,9 +41,11 @@ $blog_id = get_category_by_slug( 'blog' )->term_id
                                     class="fa fa-pencil-square-o" aria-hidden="true"></i>Signup for an account</a>
                     </div>
                     <div class="signup-benefits">
-                        <p><i class="fa fa-check" aria-hidden="true"></i>aasfsaf</p>
-                        <p><i class="fa fa-check" aria-hidden="true"></i>asfsaf</p>
-                        <p><i class="fa fa-check" aria-hidden="true"></i>asffsa</p>
+                        <!-- TODO: remove junk
+                        <p><i class="fa fa-check" aria-hidden="true"></i>etc</p>
+                        <p><i class="fa fa-check" aria-hidden="true"></i>etc</p>
+                        <p><i class="fa fa-check" aria-hidden="true"></i>etc</p>
+                        -->
                     </div>
 					<?php
 				}
@@ -46,7 +54,7 @@ $blog_id = get_category_by_slug( 'blog' )->term_id
             <div class="col-lg-4">
                 <div class="widgets-right">
                     <div class="first-widget bg-mid">
-                        <h2>Findout more</h2>
+                        <h2>Find out more</h2>
                         <ul>
                             <li>
                                 <p>What does it take to be NAT64 and IPv6 compatible ? Read our FAQs to ﬁnd out</p>

@@ -1,7 +1,7 @@
 <?php
 
 class MaxWPOptions {
-	static $db = false;
+	static $db;
 	static $pages = [];
 	static $page = [];
 	static $prefix = '_max_wp_option_';
@@ -45,6 +45,7 @@ class MaxWPOptions {
 				$blogId = '';
 			}
 
+			/** @noinspection PhpUndefinedMethodInspection,SqlNoDataSourceInspection,SqlResolve */
 			$result = self::$db->get_var( '
                 SELECT option_value
                 FROM ' . self::$db->base_prefix . $blogId . 'options
@@ -147,7 +148,7 @@ class MaxWPOptions {
 		self::ajaxScript();
 
 		if ( count( self::$page['sections'] ) == 0 ) {
-			echo '<p>U heeft geen secties ingesteld</p>';
+			echo '<p>You have not configured any sections</p>';
 
 			return;
 		}
@@ -161,7 +162,7 @@ class MaxWPOptions {
 				if ( count( self::$page['sections'] ) > 1 ) {
 					?>
                     <div class="max-wp-settings-nav">
-                        <input type="submit" class="button-primary" value="Bijwerken"/>
+                        <input type="submit" class="button-primary" value="Update"/>
                         <div class="max-wp-settings-tabs">
 							<?php
 							foreach ( self::$page['sections'] as $key => $section ) {
@@ -179,7 +180,7 @@ class MaxWPOptions {
 				} else {
 					?>
                     <div class="max-wp-settings-nav">
-                        <input type="submit" class="button-primary" value="Bijwerken"/>
+                        <input type="submit" class="button-primary" value="Update"/>
                     </div>
 					<?php
 				}
@@ -221,7 +222,7 @@ class MaxWPOptions {
 								echo '<div class="max-wp-settings-section-row-title">' . $row_title . '</div>';
 								echo '<div class="max-wp-settings-section-row-content">';
 
-								echo '<table class="form-table"><body>';
+								echo '<table class="form-table"><tbody>';
 								foreach ( $row as $field ) {
 									self::row( $field );
 								}
@@ -231,7 +232,7 @@ class MaxWPOptions {
 								echo '</div>';
 							}
 						} else if ( empty( $section['desc'] ) ) {
-							echo '<p>Deze sectie heeft nog geen instellingen</p>';
+							echo '<p>This section has no configuration yet</p>';
 						}
 
 						echo '</div>';
@@ -242,7 +243,7 @@ class MaxWPOptions {
         </div>
         <script>
             jQuery(function () {
-                jQuery('.max-wp-settings-tabs .max-wp-settings-tab').click(function (event) {
+                jQuery('.max-wp-settings-tabs .max-wp-settings-tab').on('click', function (event) {
                     event.preventDefault();
 
                     window.location.hash = jQuery(this).attr('href');
@@ -251,20 +252,20 @@ class MaxWPOptions {
                     jQuery(jQuery(this).attr('href')).show();
                 });
 
-                if (window.location.hash != '') {
+                if (window.location.hash !== '') {
                     jQuery(window.location.hash).show();
                 } else {
                     jQuery('.max-wp-settings-tabs-section').first().show();
                 }
 
-                jQuery('.max-wp-settings-wrap input[type="checkbox"]').click(function () {
+                jQuery('.max-wp-settings-wrap input[type="checkbox"]').on('click', function () {
                     var el = jQuery(this);
 
                     jQuery('.max-wp-settings-wrap input[value="' + el.attr('value') + '"]').each(function () {
                         var input = jQuery(this);
 
-                        if (input.attr('name') == el.attr('name')) {
-                            if (input.attr('type') == 'checkbox') {
+                        if (input.attr('name') === el.attr('name')) {
+                            if (input.attr('type') === 'checkbox') {
                                 if (el.prop('checked')) {
                                     input.attr('checked', 'checked');
                                 } else {
@@ -507,7 +508,7 @@ class MaxWPOptions {
 		}
 
 		if ( $field->type == 'gravityforms' && class_exists( 'GFAPI' ) ) {
-			$field->values[''] = 'Maak een keuze';
+			$field->values[''] = 'Make a choice';
 
 			if ( $forms = GFAPI::get_forms() ) {
 				foreach ( $forms as $form ) {
@@ -519,7 +520,7 @@ class MaxWPOptions {
 		}
 
 		if ( $field->type == 'select' && $field->empty ) {
-			$field->values[''] = 'Maak een keuze';
+			$field->values[''] = 'Make a choice';
 		}
 
 		if ( $field->type == 'select' && ! empty( $field->range ) ) {
@@ -582,7 +583,8 @@ class MaxWPOptions {
                         type: false
                     };
 
-                    for (key in args) {
+                    for (var key in args) {
+                        if (!args.hasOwnProperty(key)) continue;
                         data[key] = args[key];
                     }
 
@@ -624,7 +626,7 @@ class MaxWPOptions {
 		if ( self::saved() ) {
 			?>
             <div class="notice notice-success is-dismissible">
-                <p>De instellingen zijn bijgewerkt</p>
+                <p>The settings have been updated</p>
             </div>
 			<?php
 		}
@@ -651,6 +653,7 @@ class MaxWPOptions {
 		$label     = false;
 
 		if ( $colspan == 1 ) {
+			/** @noinspection XmlInvalidId */
 			$label = '<label for="' . $field->id . '">' . $field->title . '</label>';
 		}
 
@@ -695,8 +698,8 @@ class MaxWPOptions {
 
 			?>
             <input id="<?php echo $field->id; ?>-search" class="<?php echo $field->class; ?>" type="text"
-                   name="<?php echo $field->id; ?>-search" placeholder="Type om te zoeken"/>
-            <a href="#empty" id="<?php echo $field->id; ?>-empty">zoekresultaten verwijderen</a>
+                   name="<?php echo $field->id; ?>-search" placeholder="Type to search"/>
+            <a href="#empty" id="<?php echo $field->id; ?>-empty">remove results</a>
             <ul id="<?php echo $field->id; ?>-chosen">
 				<?php
 				if ( ! is_array( $field->value ) ) {
@@ -794,22 +797,23 @@ class MaxWPOptions {
                     init: function () {
                         var self = this;
 
-                        jQuery('#' + self.id + '-search').keyup(function (event) {
+                        var search = jQuery('#' + self.id + '-search');
+                        search.on('keyup', function (event) {
                             self.search(event, jQuery(this));
                         });
-                        jQuery('#' + self.id + '-search').click(function (event) {
+                        search.on('click', function (event) {
                             self.search(event, jQuery(this));
                         });
 
-                        if (self.default == 'show') {
-                            jQuery('#' + self.id + '-search').click();
+                        if (self.default === 'show') {
+                            search.trigger('click');
                         }
 
-                        jQuery('#' + self.id + '-empty').click(function (event) {
+                        jQuery('#' + self.id + '-empty').on('click', function (event) {
                             self.empty(event, jQuery(this));
                         });
 
-                        jQuery('.' + self.id + '-chosen a').click(function (event) {
+                        jQuery('.' + self.id + '-chosen a').on('click', function (event) {
                             self.remove(event, jQuery(this));
                         });
 
@@ -826,8 +830,9 @@ class MaxWPOptions {
                             chosen: []
                         };
 
-                        if (jQuery('#' + self.id + '-chosen li input').length > 0) {
-                            jQuery('#' + self.id + '-chosen li input').each(function () {
+                        var chosen = jQuery('#' + self.id + '-chosen li input');
+                        if (chosen.length > 0) {
+                            chosen.each(function () {
                                 args.chosen.push(jQuery(this).attr('value'));
                             });
                         }
@@ -840,20 +845,22 @@ class MaxWPOptions {
                         var html = '';
 
                         if (typeof result.data != 'undefined') {
-                            for (type in result.data) {
+                            for (var type in result.data) {
+                                if (!result.data.hasOwnProperty(type)) continue;
                                 var type_data = result.data[type];
 
-                                for (key in type_data) {
+                                for (var key in type_data) {
+                                    if (!type_data.hasOwnProperty(key)) continue;
                                     html += '<a href="' + key + '" data-type="' + type + '">' + type_data[key] + ' +</a> ';
                                 }
                             }
                         } else {
-                            html += 'Geen resultaten gevonden';
+                            html += 'No results found';
                         }
 
                         jQuery('#' + self.id + '-results').html(html).addClass('active');
 
-                        jQuery('#' + self.id + '-results a').unbind().click(function (event) {
+                        jQuery('#' + self.id + '-results a').off().on('click', function (event) {
                             self.add(event, jQuery(this));
                         });
 
@@ -864,11 +871,11 @@ class MaxWPOptions {
 
                         event.preventDefault();
 
-                        if (self.limit == 1 && jQuery('.' + self.id + '-chosen').length == 1) {
+                        if (self.limit === 1 && jQuery('.' + self.id + '-chosen').length === 1) {
                             jQuery('#' + self.id + '-chosen').empty();
                         }
 
-                        if (jQuery('#' + self.id + '-chosen a input[value="' + el.attr('href') + '"]').length == 0) {
+                        if (jQuery('#' + self.id + '-chosen a input[value="' + el.attr('href') + '"]').length === 0) {
                             jQuery('#' + self.id + '-chosen').append(
                                 '<li class="' + self.id + '-chosen">' +
                                 '<input type="hidden" name="<?php echo $field->name; ?>" value="' + el.data('type') + '|' + el.attr('href') + '" />' +
@@ -877,7 +884,7 @@ class MaxWPOptions {
                                 '</li>'
                             );
 
-                            jQuery('.' + self.id + '-chosen a').unbind().click(function (event) {
+                            jQuery('.' + self.id + '-chosen a').off().on('click', function (event) {
                                 self.remove(event, jQuery(this));
                             });
                         }
@@ -923,7 +930,7 @@ class MaxWPOptions {
                     padding: 5px 35px 5px 10px;
                     background-color: #0085ba;
                     white-space: nowrap;
-                    margin: 10px 10px 0px 0px;
+                    margin: 10px 10px 0 0;
                     color: #fff;
                     text-decoration: none;
                     cursor: move;
@@ -931,8 +938,8 @@ class MaxWPOptions {
 
                 #<?php echo $field->id; ?>-chosen li a {
                     position: absolute;
-                    top: 0px;
-                    right: 0px;
+                    top: 0;
+                    right: 0;
                     padding: 5px 10px;
                     background-color: #C20032;
                     color: #fff;
@@ -967,7 +974,7 @@ class MaxWPOptions {
                     padding: 5px 10px;
                     background-color: #999;
                     white-space: nowrap;
-                    margin: 10px 10px 0px 0px;
+                    margin: 10px 10px 0 0;
                     color: #fff;
                     text-decoration: none;
                 }
@@ -1008,35 +1015,35 @@ class MaxWPOptions {
 			?>
             <div class="img-select">
                 <div class="img-preview">
-                    <img src="<?php echo $img; ?>" alt="Geen afbeelding gekozen"/>
+                    <img src="<?php echo $img; ?>" alt="No image selected"/>
                 </div>
                 <div class="img-actions">
-                    <input type="button" class="button img-button-choose" value="Kiezen"/>
-                    <input type="button" class="button img-button-remove" value="Verwijderen"/>
+                    <input type="button" class="button img-button-choose" value="Choose"/>
+                    <input type="button" class="button img-button-remove" value="Remove"/>
                 </div>
             </div>
             <input type="hidden" name="<?php echo $field->name; ?>" id="<?php echo $field->id; ?>"
                    value="<?php echo $field->value; ?>">
             <script>
                 jQuery(function () {
-                    jQuery('#<?php echo $field->row_id; ?> .img-button-choose').click(function (event) {
+                    jQuery('#<?php echo $field->row_id; ?> .img-button-choose').on('click', function (event) {
                         event.preventDefault();
 
                         var media = wp.media({
-                            title: 'Selecteer een afbeelding',
+                            title: 'Select an image',
                             multiple: false,
                             library: {
                                 type: 'image'
                             },
                             button: {
-                                text: 'Selecteren'
+                                text: 'Select'
                             }
                         });
 
                         media.open();
 
-                        media.on('select', function () {
-                            media.state().get('selection').each(function (attachment) {
+                        jQuery(media.frame).on('select', function () {
+                            jQuery(media.frame).state().get('selection').each(function (attachment) {
                                 jQuery('#<?php echo $field->id; ?>').val(attachment.id);
 
                                 var imgSrc = attachment.attributes.url;
@@ -1054,7 +1061,7 @@ class MaxWPOptions {
                         });
                     });
 
-                    jQuery('#<?php echo $field->row_id; ?> .img-button-remove').click(function (event) {
+                    jQuery('#<?php echo $field->row_id; ?> .img-button-remove').on('click', function (event) {
                         event.preventDefault();
 
                         jQuery('#<?php echo $field->id; ?>').val('');
@@ -1137,28 +1144,28 @@ class MaxWPOptions {
 				}
 				?>
             </div>
-            <input type="button" class="button file-button-choose" value="Kiezen"
+            <input type="button" class="button file-button-choose" value="Select"
 			       <?php if ( $field->value ) { ?>style="display: none;"<?php } ?> />
-            <input type="button" class="button file-button-remove" value="Verwijderen"/>
+            <input type="button" class="button file-button-remove" value="Remove"/>
             <script>
                 jQuery(function () {
-                    jQuery('#<?php echo $field->row_id; ?> .file-button-choose').click(function (event) {
+                    jQuery('#<?php echo $field->row_id; ?> .file-button-choose').on('click', function (event) {
                         event.preventDefault();
 
                         var self = this;
 
                         var media = wp.media({
-                            title: 'Selecteer een bestand',
+                            title: 'Select a file',
                             multiple: false,
                             button: {
-                                text: 'Selecteren'
+                                text: 'Select'
                             }
                         });
 
                         media.open();
 
-                        media.on('select', function () {
-                            media.state().get('selection').each(function (attachment) {
+                        jQuery(media.frame).on('select', function () {
+                            jQuery(media.frame).state().get('selection').each(function (attachment) {
                                 jQuery('#<?php echo $field->id; ?>').val(attachment.id);
 
                                 jQuery('#<?php echo $field->id; ?>-label').html(
@@ -1172,7 +1179,7 @@ class MaxWPOptions {
                         });
                     });
 
-                    jQuery('#<?php echo $field->row_id; ?> .file-button-remove').click(function (event) {
+                    jQuery('#<?php echo $field->row_id; ?> .file-button-remove').on('click', function (event) {
                         event.preventDefault();
 
                         jQuery('#<?php echo $field->id; ?>').val('');
@@ -1299,19 +1306,6 @@ class MaxWPOptions {
 						}
 
 						$result->data[ $object ][ $t->term_id ] = $t->name;
-					}
-				} else if ( $object == 'product_attributes' ) {
-					$query = '
-                        SELECT DISTINCT attribute_id, attribute_label
-                        FROM ' . self::$db->prefix . 'woocommerce_attribute_taxonomies 
-                        WHERE attribute_label LIKE "%' . esc_sql( $args->s ) . '%"
-                        LIMIT ' . $limit . '
-                    ';
-
-					if ( $results = self::$db->get_results( $query ) ) {
-						foreach ( $results as $attr ) {
-							$result->data[ $object ][ $attr->attribute_id ] = $attr->attribute_label;
-						}
 					}
 				} else {
 					$data = get_posts( [

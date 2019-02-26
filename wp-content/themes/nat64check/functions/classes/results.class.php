@@ -66,7 +66,6 @@ class nat_results {
 			if ( is_wp_error( json_decode( $values->result->finished ) ) ) {
 				sleep( 1 );
 			} else if ( json_decode( $values->result )->finished ) {
-				$url_test = base64_encode( json_decode( $values->result )->url );
 				$loop     = false;
 			} else {
 				sleep( 1 );

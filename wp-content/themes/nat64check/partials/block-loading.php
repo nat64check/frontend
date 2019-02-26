@@ -1,4 +1,7 @@
 <?php
+
+global $nat_api;
+
 $pages       = get_pages( [
 	'meta_key'   => '_wp_page_template',
 	'meta_value' => 'page-results.php',
@@ -18,8 +21,6 @@ foreach ( $get_args as $key => $val ) {
 		$get_args->$key = esc_sql( $_GET[ $key ] );
 	}
 }
-global $nat_api;
-
 
 $args = [
 	'body' => [
@@ -28,12 +29,12 @@ $args = [
 	],
 ];
 
-$create_test = $nat_api->request( 'testruns/', $nat_api->full_token, $args, 'post' );
+$create_test = $nat_api->request( 'testruns/', '', $args, 'post' );
 
 $test_name = json_decode( $create_test['body'] )->url;
 $test_id   = json_decode( $create_test['body'] )->id;
 
-$owner_id = json_decode( $nat_api->request( 'testruns/' . $test_id . '/', $nat_api->full_token )['body'] )->owner_id;
+$owner_id = json_decode( $nat_api->request( 'testruns/' . $test_id . '/' )['body'] )->owner_id;
 
 
 ?>
@@ -70,7 +71,7 @@ $loop = true;
 while ( $loop ) {
 	if ( is_wp_error( $request ) ) {
 		sleep( 1 );
-	} else if ( json_decode( $url_test = $nat_api->request( 'testruns/' . $test_id . '/', $nat_api->full_token, $args )['body'] )->url ) {
+	} else if ( json_decode( $url_test = $nat_api->request( 'testruns/' . $test_id . '/', '', $args )['body'] )->url ) {
 		$loop = false;
 	} else {
 		sleep( 1 );

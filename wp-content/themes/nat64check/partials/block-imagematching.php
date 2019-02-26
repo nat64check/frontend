@@ -26,7 +26,7 @@
                 <div class="content">
                     <p>We compared snapshots of how your website looks over IPv4, Ipv6, and NAT64. Your NAT64
                         compliance is good - the missing 15% can usually be accounted for by different adverts being
-                        displayed when the snapshots were taken. Howeve, your general IPv6 compliance is poor.
+                        displayed when the snapshots were taken. However, your general IPv6 compliance is poor.
                         Customers looking at your website over IPv6 will not see what you expect them to!</p>
                 </div>
             </div>

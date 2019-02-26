@@ -13,6 +13,8 @@
                 <div class="matching-nat inline-block">
                     <div class="title">NAT64</div>
                     <div id="progressbar-nat">
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <div class="progress" value="70"></div>
                     </div>
                 </div>
@@ -21,6 +23,8 @@
                 <div class="matching-ipv inline-block">
                     <div class="title">IPv6</div>
                     <div id="progressbar-ipv">
+                        <!-- TODO: fix invalid HTML -->
+                        <!--suppress HtmlUnknownAttribute -->
                         <div class="progress" value="20"></div>
                     </div>
                 </div>

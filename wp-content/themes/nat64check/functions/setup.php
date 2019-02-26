@@ -1,13 +1,8 @@
 <?php
-if ( ! defined( 'NAT_GOOGLE_API_KEY' ) ) {
-	define( 'NAT_GOOGLE_API_KEY', 'AIzaSyAuxP7gjwSRUXaM6e209JVHWhVZFNzqnm4' );
-}
-
 if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'menus' );
 	add_theme_support( 'widgets' );
 	add_theme_support( 'post-thumbnails' );
-	//add_theme_support( 'woocommerce' );
 }
 
 add_action( 'init', function () {

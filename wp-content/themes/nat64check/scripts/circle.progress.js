@@ -1,13 +1,10 @@
 jQuery(function ($) {
-    var nat = $('.big-circle-nat .ko-progress-circle__overlay p').text().replace('%', '');
-    var ipv = $('.big-circle-ipv .ko-progress-circle__overlay p').text().replace('%', '');
-
-
-    if (nat >= 85) {
+    var nat_pct = $('.big-circle-nat .ko-progress-circle__overlay p').text().replace('%', '');
+    if (nat_pct >= 85) {
         $('.big-circle-nat').css('background-color', '#3DA637');
         $('.big-circle-nat .ko-progress-circle').css('background-color', '#3DA637');
         $('.big-circle-nat .ko-progress-circle__overlay').css('background-color', '#3DA637');
-    } else if (nat <= 60) {
+    } else if (nat_pct <= 60) {
         $('.big-circle-nat').css('background-color', '#E20000');
         $('.big-circle-nat .ko-progress-circle').css('background-color', '#E20000');
         $('.big-circle-nat .ko-progress-circle__overlay').css('background-color', '#E20000');
@@ -16,11 +13,13 @@ jQuery(function ($) {
         $('.big-circle-nat .ko-progress-circle').css('background-color', '#FCB725');
         $('.big-circle-nat .ko-progress-circle__overlay').css('background-color', '#FCB725');
     }
-    if (ipv >= 85) {
+
+    var ipv_pct = $('.big-circle-ipv .ko-progress-circle__overlay p').text().replace('%', '');
+    if (ipv_pct >= 85) {
         $('.big-circle-ipv').css('background-color', '#3DA637');
         $('.big-circle-ipv .ko-progress-circle').css('background-color', '#3DA637');
         $('.big-circle-ipv .ko-progress-circle__overlay').css('background-color', '#3DA637');
-    } else if (ipv <= 60) {
+    } else if (ipv_pct <= 60) {
         $('.big-circle-ipv').css('background-color', '#E20000');
         $('.big-circle-ipv .ko-progress-circle').css('background-color', '#E20000');
         $('.big-circle-ipv .ko-progress-circle__overlay').css('background-color', '#E20000');
@@ -40,8 +39,10 @@ jQuery(function ($) {
             }
         });
     });
-    $('.big-circle-nat .ko-progress-circle').attr('data-progress', nat);
-    $('.big-circle-ipv .ko-progress-circle').attr('data-progress', ipv);
 
+    // noinspection JSJQueryEfficiency
+    {
+        $('.big-circle-nat .ko-progress-circle').attr('data-progress', nat_pct);
+        $('.big-circle-ipv .ko-progress-circle').attr('data-progress', ipv_pct);
+    }
 });
-

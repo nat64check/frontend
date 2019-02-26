@@ -1,5 +1,7 @@
 <?php
+
 global $nat_api;
+
 $token = '';
 //$server_setting = 'z';
 if ( is_user_logged_in() ) {
@@ -101,7 +103,7 @@ if ( isset( $values->generate_page[0] ) ) {
                                            id="test-server-<?php echo $server->hostname; ?>"
                                            value="<?php echo $server->_url; ?>"/>
                                     <label class="css-label"
-                                           for="test-server-<?php echo $server->country; ?>"><?php echo '<p class="inline-block"><img src="' . get_stylesheet_directory_uri() . '/graphics/' . strtolower( $server->country ) . '.svg" alt=""></p>'; ?><?php echo $values->country_names[ $server->country ]; ?></label>
+                                           for="test-server-<?php echo $server->hostname; ?>"><?php echo '<p class="inline-block"><img src="' . get_stylesheet_directory_uri() . '/graphics/' . strtolower( $server->country ) . '.svg" alt=""></p>'; ?><?php echo $values->country_names[ $server->country ]; ?></label>
                                 </td>
                             </tr>
 							<?php
@@ -190,7 +192,7 @@ if ( isset( $values->generate_page[0] ) ) {
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5">
-                        <h3 clas>Website</h3>
+                        <h3>Website</h3>
                     </div>
                     <div class="col-sm-4 text-center date">
                         <h3>Date / Time</h3>

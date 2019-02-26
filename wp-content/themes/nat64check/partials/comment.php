@@ -1,4 +1,6 @@
 <?php
+global $comment;
+
 $class = '';
 if ( $comment->comment_depth > 1 ) {
 	$class = 'reply';

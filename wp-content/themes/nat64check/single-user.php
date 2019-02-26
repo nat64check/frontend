@@ -24,6 +24,7 @@ if ( is_user_logged_in() && $user_id ) {
 
 	$country_names = json_decode( file_get_contents( "http://country.io/names.json" ), true );
 
+	/** @noinspection SpellCheckingInspection */
 	$user_args = [
 		'post_id'      => $user_id,
 		'field_groups' => [ 'group_5b9ba666edeee' ],

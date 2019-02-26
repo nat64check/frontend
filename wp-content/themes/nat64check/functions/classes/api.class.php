@@ -28,40 +28,29 @@ class nat_api {
 		}
 	}
 
-	function request( $url, $token, $args = [], $method = 'get' ) {
+	function request( $url, $token = '', $args = [], $method = 'get' ) {
 		$loop = true;
-		while ( $loop ) {
-
+		do {
 			//url//
-			if ( ! preg_match( '|http|', $url ) ) {
+			if ( ! preg_match( '|^http|', strtolower( $url ) ) ) {
 				$url = $this->url . $url;
 			}
 
 			//headers//
+			$headers = [
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+			];
+			if ( $token == 'user' ) {
+				$token = get_field( 'api_token', 'user_' . get_current_user_id() . '' );
+			}
 			if ( $token ) {
-				if ( $token == 'user' ) {
-					$token = get_field( 'api_token', 'user_' . get_current_user_id() . '' );
-				}
-				if ( $token ) {
-					$headers = [
-						'headers' => [
-							'Content-Type'  => 'application/json',
-							'Authorization' => 'token ' . $token,
-						],
-					];
-				}
-			} else {
-				$headers                             = [
-					'headers' => [
-						'Content-Type' => 'application/json',
-					],
-				];
-				$headers['headers']['Authorization'] = $token;
+				$headers['headers']['Authorization'] = 'token ' . $token;
 			}
 
 			//args//
 			if ( is_array( $args ) ) {
-
 				if ( isset( $args['body'] ) ) {
 					$args['body'] = json_encode( $args['body'] );
 				}
@@ -98,7 +87,7 @@ class nat_api {
 			} else {
 				sleep( 1 );
 			}
-		}
+		} while ( $loop );
 
 //		if( $request['response']['code'] == 200 ){
 		return $request;
@@ -134,4 +123,4 @@ class nat_api {
 	}
 }
 
-$GLOBALS['nat_api'] = new nat_api();
+$nat_api = new nat_api();

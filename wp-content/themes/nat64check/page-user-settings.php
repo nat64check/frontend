@@ -45,36 +45,52 @@ foreach ( $get_args as $k => $v ) {
 
 ?>
 
-    <section class="section account-info content-padding bg-low">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="content">
-                        <div <?php post_class() ?>>
-                            <div class="account flex-container flex-column">
-                                <h1>Your account</h1>
-                                <div class="flex-container justify-content-between align-items-center">
-                                    <h3><?php echo $user->data->display_name; ?>(<?php echo $user->data->user_email; ?>
-                                        )</h3><a class="button bg-secondary"
-                                                 href="<?php echo site_url() . '?delete_user=' . base64_encode( get_current_user_id() ); ?>"><i
-                                                class="fa fa-trash-o" aria-hidden="true"></i> Delete your account</a>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <form id="change-pass-form" action="<?php echo get_site_url(); ?>" method="get">
-                                            <div class="input"><h4>Current password</h4><input class="current-pass"
-                                                                                               type="password"
-                                                                                               name="current-pass"
-                                                                                               value=""></div>
-                                            <div class="input"><h4>New password</h4><input class="new-pass"
-                                                                                           type="password"
-                                                                                           name="new-pass" value="">
-                                            </div>
-                                            <div><a class="button bg-accent" href="#"><i class="fa fa-key"
-                                                                                         aria-hidden="true"></i> Change
-                                                    your password</a></div>
-                                        </form>
-                                    </div>
+<section class="section account-info content-padding bg-low">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content">
+                    <div <?php post_class() ?>>
+                        <div class="account flex-container flex-column">
+                            <h1>Your account</h1>
+                            <div class="flex-container justify-content-between align-items-center">
+                                <h3><?php echo $user->data->display_name; ?>(<?php echo $user->data->user_email; ?>
+                                    )</h3>
+                                <a class="button bg-secondary"
+                                   href="<?php echo site_url() . '?delete_user=' . base64_encode( get_current_user_id() ); ?>"><i
+                                            class="fa fa-trash-o" aria-hidden="true"></i> Delete your account</a>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <form id="change-pass-form" action="<?php echo get_site_url(); ?>" method="get">
+                                        <div class="input">
+                                            <label>
+                                                <!-- TODO: fix invalid HTML -->
+                                                <!--suppress HtmlUnknownTag -->
+                                                <h4>Current password</h4>
+                                                <input class="current-pass"
+                                                       type="password"
+                                                       name="current-pass"
+                                                       value="">
+                                            </label>
+                                        </div>
+                                        <div class="input">
+                                            <label>
+                                                <!-- TODO: fix invalid HTML -->
+                                                <!--suppress HtmlUnknownTag -->
+                                                <h4>New password</h4>
+                                                <input class="new-pass"
+                                                       type="password"
+                                                       name="new-pass" value="">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <a class="button bg-accent" href="#">
+                                                <i class="fa fa-key" aria-hidden="true"></i>
+                                                Change your password
+                                            </a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -82,14 +98,15 @@ foreach ( $get_args as $k => $v ) {
                 </div>
             </div>
         </div>
-    </section>
-    <form action="<?php the_permalink(); ?>" method="get">
-        <section class="section account-settings content-padding bg-mid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Default settings</h2>
-                        <!--
+    </div>
+</section>
+<form action="<?php the_permalink(); ?>" method="get">
+    <section class="section account-settings content-padding bg-mid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Default settings</h2>
+                    <!--
 					<div class="time-zones content-margin flex-container align-items-center">
 						<h4>Default timezone</h4>
 						<select name="time_setting" id="time-select">
@@ -97,7 +114,7 @@ foreach ( $get_args as $k => $v ) {
 						</select>
 					</div>
 -->
-						<?php /*
+					<?php /*
 					<div id="server-select" class="multiselect server-select">
 						<h4 class="inline-block">Default testing locations</h4>
 						<div class="selectBox">
@@ -152,8 +169,13 @@ foreach ( $get_args as $k => $v ) {
 						</select>		
 					</div>
 					*/ ?>
-                        <div class="private content-margin flex-container align-items-center">
+                    <div class="private content-margin flex-container align-items-center">
+                        <label>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownTag -->
                             <h4>Checks marked  <i class="fa fa-lock" aria-hidden="true"></i>  Private as default </h4>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownTag -->
                             <div class="toggle-group">
 								<?php
 								$private_checked = 'checked';
@@ -163,9 +185,15 @@ foreach ( $get_args as $k => $v ) {
 								?>
                                 <input type="checkbox" name="private_setting" <?php echo $private_checked; ?>>
                             </div>
-                        </div>
-                        <div class="mail content-margin flex-container align-items-center">
+                        </label>
+                    </div>
+                    <div class="mail content-margin flex-container align-items-center">
+                        <label>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownTag -->
                             <h4>Email when check results change as default</h4>
+                            <!-- TODO: fix invalid HTML -->
+                            <!--suppress HtmlUnknownTag -->
                             <div class="toggle-group">
 								<?php
 								$mail_checked = 'checked';
@@ -175,11 +203,12 @@ foreach ( $get_args as $k => $v ) {
 								?>
                                 <input type="checkbox" name="mail_setting" <?php echo $mail_checked; ?>>
                             </div>
-                        </div>
-                        <input type="submit" value="Submit">
+                        </label>
                     </div>
+                    <input type="submit" value="Submit">
                 </div>
             </div>
-        </section>
-    </form>
+        </div>
+    </section>
+</form>
 <?php get_footer(); ?>

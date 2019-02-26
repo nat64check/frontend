@@ -17,6 +17,8 @@ $red    = '#E20000';
             <div class="col col-sm-3">
                 <div class="loading-ipv4 inline-block">
                     <div class="title">IPv4</div>
+                    <!-- TODO: fix invalid HTML -->
+                    <!--suppress HtmlUnknownAttribute -->
                     <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                         <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                 fill="<?php echo $grey; ?>"></circle>
@@ -33,6 +35,8 @@ $red    = '#E20000';
             <div class="col col-sm-3">
                 <div class="loading-nat inline-block">
                     <div class="title">NAT64</div>
+                    <!-- TODO: fix invalid HTML -->
+                    <!--suppress HtmlUnknownAttribute -->
                     <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                         <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                 fill="<?php echo $yellow; ?>"></circle>
@@ -49,6 +53,8 @@ $red    = '#E20000';
             <div class="col col-sm-3">
                 <div class="loading-ipv6 inline-block">
                     <div class="title">IPv6</div>
+                    <!-- TODO: fix invalid HTML -->
+                    <!--suppress HtmlUnknownAttribute -->
                     <svg style="font-size: 7em" class="progress-circle" viewBox="0 0 44 44">
                         <circle class="bg rating-nat-bg" r="12" cx="22" cy="22" stroke-width="1"
                                 fill="<?php echo $red; ?>"></circle>

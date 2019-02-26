@@ -13,7 +13,7 @@
 .block-loading,
 .user-checks,
 .history {
-  padding: 50px 0px;
+  padding: 50px 0;
 }
 
 .overlay-blend {
@@ -75,8 +75,8 @@
 
     .container {
       @include device-phone-large {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 0;
+        padding-right: 0;
       }
     }
 
@@ -145,7 +145,7 @@
         color: #B9B9B9;
         background-color: $font-color-white;
 
-        @include border-radius(50px 0px 0px 50px);
+        @include border-radius(50px 0 0 50px);
       }
     }
 
@@ -188,7 +188,6 @@
   }
 
   .button {
-    border-radius: 50px;
     line-height: 60px;
     border-radius: 50px;
     padding: 5px 10px;
@@ -221,7 +220,6 @@
 
       .progress {
         height: 40px;
-        width: 100%;
         color: #fff;
         padding-right: 15px;
         text-align: right;
@@ -231,7 +229,7 @@
         padding-left: 15px;
         padding-top: 8px;
         //background-color: #FCB725;
-        @include border-radius(50px 0px 0px 50px);
+        @include border-radius(50px 0 0 50px);
 
       }
     }
@@ -241,7 +239,7 @@
     @include device-phone-large {
       float: left;
       h2 {
-        line-height: 0px;
+        line-height: 0;
       }
     }
   }
@@ -257,7 +255,7 @@
   //            line-height: 22px;
   //            width: 0;
   //            background-color: #FCB725;
-  //            @include border-radius(50px 0px 0px 50px);
+  //            @include border-radius(50px 0 0 50px);
   //        }
   //    }
   //    #progressbar-ipv {
@@ -271,7 +269,7 @@
   //            line-height: 22px;
   //            width: 0;
   //            background-color: #FCB725;
-  //            @include border-radius(50px 0px 0px 50px);
+  //            @include border-radius(50px 0 0 50px);
   //        }
   //    }
 }
@@ -312,7 +310,8 @@
 
       &.progress {
         stroke: $font-color-white;
-        transition: dash 0.5s linear forwards;
+        transition: dash 0.5s linear;
+        // animation-fill-mode: forwards;
       }
     }
   }
@@ -398,7 +397,7 @@
         cursor: pointer;
         font-size: 40px;
         background: $color-primary;
-        @include border-radius(0px 50px 50px 0px);
+        @include border-radius(0px 50px 50px 0);
 
         i {
           color: #fff;
@@ -408,7 +407,7 @@
   }
 
   .title {
-    padding: 10px 0px;
+    padding: 10px 0;
 
     p {
       color: $font-color-white;
@@ -422,10 +421,10 @@
   }
 
   .buttons-row {
-    padding: 10px 0px;
+    padding: 10px 0;
 
     .search-button {
-      padding-left: 0px;
+      padding-left: 0;
 
       .search-input {
         position: relative;
@@ -459,7 +458,7 @@
   }
 
   .info-row {
-    padding: 10px 0px;
+    padding: 10px 0;
 
     h3 {
       font-size: 16px;
@@ -467,7 +466,7 @@
   }
 
   .result-row {
-    padding: 20px 0px;
+    padding: 20px 0;
 
     a {
       padding-left: 10px;
@@ -490,14 +489,13 @@
 .block-summary {
 
   .summary {
-    padding: 5px 0px;
+    padding: 5px 0;
     cursor: pointer;
 
     h3 {
       position: relative;
-      padding: 5px 0px;
       border-radius: 50px;
-      padding-left: 10px;
+      padding: 5px 0 5px 10px;
       @include transition();
 
       &.ui-state-active {
@@ -518,9 +516,7 @@
       }
 
       .problem {
-        padding: 5px;
-        padding-right: 11px;
-        padding-left: 11px;
+        padding: 5px 11px;
         color: $font-color-white;
         border-radius: 50px;
       }
@@ -536,7 +532,7 @@
   .summary-print,
   .summary-download,
   .summary-signup {
-    padding: 20px 0px;
+    padding: 20px 0;
 
     a {
       padding: 10px 20px;
@@ -612,7 +608,7 @@
       }
 
       .get-intouch {
-        padding: 10px 0px;
+        padding: 10px 0;
 
         a {
           color: $color-secondary;
@@ -657,11 +653,11 @@
   }
 
   .content {
-    padding: 30px 0px;
+    padding: 30px 0;
 
     //        .post {
     //            padding: 20px;
-    //            margin: 20px 0px;
+    //            margin: 20px 0;
     //
     //            h2,p {
     //                color: $font-color-black;
@@ -722,164 +718,6 @@
     }
   }
 }
-
-//.user-checks {
-//	#add-schedule{
-//		position: absolute;
-//		right: -20px;
-//		bottom: 42px;
-//		font-size: 43px;
-//		color: #fff;
-//		border-radius: 50%;
-//		 
-//		&:hover{
-//			color: $color-primary;
-//		}
-//	}
-//	#acf-form{
-//		width: 100%;
-//		.acf-field-5bab6bd9ca7be{
-//			display: none;
-//		}
-//		.acf-field-5b9ba69ca8ee9{
-//			padding: 0;
-//		}
-//		.acf-field{
-//			border: none;
-//			
-//			select{
-//				border-radius: 50px;
-//    			height: 40px;
-//				padding: 0 15px;
-//				text-align: center;
-//				border: none;
-//				color: $color-grey;
-//				background: $color-low-grey;
-//			}
-//			.acf-label{
-//				label{
-//					color: $color-grey;
-//				}
-//			}
-//			.acf-checkbox-list{
-//				label{
-//					color: $color-grey;
-//				}
-//			}
-//		}
-//		.acf-input{
-//			input{
-//				color: $color-grey;
-//				background: $color-low-grey;
-//			}
-//		}
-//		.acf-table{
-//			border: none;
-//			.ui-sortable{
-//				background: $color-high-grey;
-//			}
-//			.acf-row.-collapsed{
-//				position: relative;
-//				height: 50px;
-//				.ui-sortable-handle{
-//					height: 50px;
-//					span{
-//						line-height: 50px;
-//						padding-left: 7px;
-//						color: #000;
-//					}
-//				}
-//			}
-//			tr{
-//				border: 1px solid $color-highest-grey;
-//				.acf-field{
-//					padding: 15px 0px 15px 30px;
-//				}
-////				td:nth-child(1){
-////					display: none;
-////				}
-//				
-//				.acf-row-handle {
-////					position: relative;
-//					display: block !important;
-//					
-////					&.ui-sortable-handle{
-////						heigh
-////					}
-//					.acf-icon.-collapse{
-//						
-//						display: block;
-//						position: absolute;
-//						right: 15px;
-//					}
-//					.acf-icon.-plus{
-//						display: none;
-//					}
-//					.acf-icon.-minus{
-//						color: $color-high-grey;
-//					}
-//					.acf-icon.-minus{
-//						position: absolute;
-//    					right: -45px;
-//						top: 13px;
-//						width: 40px;
-//						height: 40px;
-//						font-size: 39px;
-//						display: block;
-//					}
-//				}
-//				th,
-//				td{
-//					padding: 0;
-//					background: $color-high-grey;
-//					border: none;
-//					padding-right: 25px;
-//					input{
-//						border-radius: 40px;
-//						border: none;
-//						height: 40px;
-//						padding-left: 30px;
-//						//text-align: center; 
-//						&[type='checkbox']{
-//							margin: 10px;
-//							height: 12px;
-//							-ms-transform: scale(1.5);
-//							-moz-transform: scale(1.5);
-//							-webkit-transform: scale(1.5);
-//							-o-transform: scale(1.5);
-//						}
-//					}
-//					
-//					.-globe{
-//						line-height: 30px;
-//					}
-//				}
-//			}
-//		}
-//		.acf-actions{
-//			display: none;
-//		}
-//		.acf-form-submit{
-//			text-align: right;
-//			margin-top: 40px;
-//			input{
-//				border-radius: 50px;
-//				background: $color-primary;
-//				border: none;
-//				cursor: pointer;
-//				padding: 10px 30px;
-//				font-weight: 400;
-//				
-//				@include transition();
-//				
-//				&:hover{
-//					background: $color-accent;
-//				}
-//			}
-//		}
-//	}
-//	
-//}
 
 .user-checks {
   #message {
@@ -1048,7 +886,7 @@
 .history {
   .search-button {
     width: 100%;
-    padding: 0px;
+    padding: 0;
 
     input {
       width: 100%;
@@ -1058,7 +896,7 @@
 
     .border-right {
       left: 3px;
-      top: 0px;
+      top: 0;
     }
 
     button {
@@ -1071,7 +909,7 @@
 
 .history-result-titles,
 .history-result-row {
-  padding: 20px 0px;
+  padding: 20px 0;
 
   a {
     padding-left: 10px;
@@ -1091,7 +929,7 @@
 .cat-faq {
   .post {
     padding: 15px;
-    margin: 15px 0px;
+    margin: 15px 0;
 
     p {
       margin-bottom: 30px;
@@ -1128,6 +966,7 @@
 
           &:before {
             content: "\f00c";
+            //noinspection CssNoGenericFontName
             font-family: FontAwesome;
             display: inline-block;
             margin-left: -1.3em;
@@ -1150,7 +989,6 @@
           input {
             font-size: 16px;
             border-radius: 50px;
-            height: 30px;
             border: none;
             height: 40px;
             background: $color-low-grey;
@@ -1333,7 +1171,7 @@
       border-radius: 50px;
       width: 50px;
       height: 50px;
-      right: 0px;
+      right: 0;
       top: -5px;
       transform: rotate(20deg);
 
@@ -1428,7 +1266,7 @@
       }
 
       .comment-meta {
-        margin: 5px 0px 10px;
+        margin: 5px 0 10px;
         color: $color-highest-grey;
       }
 
@@ -1528,7 +1366,6 @@
         border: none;
         background: transparent;
         color: $color-highest-grey;
-        top: 6px;
         cursor: pointer;
         top: -1px;
         padding: 9px;

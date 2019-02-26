@@ -1,9 +1,9 @@
 <?php
 
 class nat_user {
-	public $type = 'user';
-	public $single = 'user';
-	public $multiple = 'users';
+	const type = 'user';
+	const single = 'user';
+	const multiple = 'users';
 
 	function __construct() {
 		add_action( 'init', [ $this, 'register_post_type' ] );
@@ -30,9 +30,8 @@ class nat_user {
 	}
 
 	static function user_title( $post_id ) {
-
 		if ( empty( $_POST['acf'] ) ) {
-			return;
+			return null;
 		}
 
 		if ( ! empty( $_POST['acf']['field_5ba2349db6d2f'] ) && ! empty( $_POST['acf']['field_5ba234adb6d31'] ) ) {
@@ -67,6 +66,7 @@ class nat_user {
 		$api_user     = get_field( 'api_user', 'user_' . $user_id );
 		$related_user = max_wp_user_prop( 'connect_user' );
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$user_args = [
 			'ID'          => $related_user,
 			'post_status' => 'private',
@@ -80,7 +80,7 @@ class nat_user {
 	}
 
 	static function user_schedules() {
-		if ( ! is_admin() && is_singular( $this->type ) ) {
+		if ( ! is_admin() && is_singular( self::type ) ) {
 			global $nat_api;
 			$schedule_list = get_post_meta( get_the_id(), 'schedule_list_ids', true );
 			if ( ! is_array( $schedule_list ) ) {
@@ -139,7 +139,7 @@ class nat_user {
 
 	static function load_servers( $field ) {
 		global $nat_api;
-		$servers          = json_decode( $nat_api->request( 'trillians/?only=country,_url', $token )['body'] )->results;
+		$servers          = json_decode( $nat_api->request( 'trillians/?only=country,_url', 'user' )['body'] )->results;
 		$field['choices'] = [];
 
 		foreach ( $servers as $server ) {
@@ -163,19 +163,19 @@ class nat_user {
 
 	function register_post_type() {
 		$args = [
-			'label'             => ucfirst( $this->multiple ),
+			'label'             => ucfirst( self::multiple ),
 			'labels'            => [
-				'all_items'          => 'Alle ' . $this->multiple,
-				'singular_name'      => ucfirst( $this->single ),
-				'menu_name'          => ucfirst( $this->multiple ),
-				'add_new'            => 'Nieuw ' . $this->single,
-				'add_new_item'       => 'Nieuw ' . $this->single . ' toevoegen',
-				'edit_item'          => ucfirst( $this->single ) . ' bewerken',
-				'new_item'           => ucfirst( $this->single ) . ' toevoegen',
-				'view_item'          => ucfirst( $this->single ) . ' bekijken',
-				'search_items'       => ucfirst( $this->single ) . ' zoeken',
-				'not_found'          => 'Geen ' . $this->multiple . ' gevonden',
-				'not_found_in_trash' => 'Geen ' . $this->multiple . ' gevonden in de prullenbak',
+				'all_items'          => 'All ' . self::multiple,
+				'singular_name'      => ucfirst( self::single ),
+				'menu_name'          => ucfirst( self::multiple ),
+				'add_new'            => 'New ' . self::single,
+				'add_new_item'       => 'Add new ' . self::single,
+				'edit_item'          => 'Edit ' . ucfirst( self::single ),
+				'new_item'           => 'Add ' . ucfirst( self::single ),
+				'view_item'          => 'View ' . ucfirst( self::single ),
+				'search_items'       => 'Search ' . ucfirst( self::single ),
+				'not_found'          => 'No ' . self::multiple . ' found',
+				'not_found_in_trash' => 'No ' . self::multiple . ' found in deleted items',
 			],
 			'public'            => true,
 			'show_ui'           => true,
@@ -193,9 +193,7 @@ class nat_user {
 			],
 		];
 
-		register_post_type( $this->type, $args );
-
-
+		register_post_type( self::type, $args );
 	}
 
 	function add_user_role() {
@@ -234,7 +232,6 @@ class nat_user {
 
 	function create_new_user( $post_id ) {
 		if ( ! is_admin() && ! empty( $_POST['acf']['field_5ba2349db6d2f'] ) && ! empty( $_POST['acf']['field_5ba234adb6d31'] ) ) {
-
 			global $nat_api;
 
 			$userdata = (object) [
@@ -281,7 +278,8 @@ class nat_user {
 									}
 								}
 								wp_delete_post( $post_id, true ); ?>
-                                <a id="try-again" class="button bg-primary" href="<?php site_url() . '/register' ?>">Try
+                                <a id="try-again" class="button bg-primary"
+                                   href="<?php echo site_url() . '/register' ?>">Try
                                     again!</a>
                             </div>
                         </div>
@@ -295,14 +293,13 @@ class nat_user {
 	}
 
 	function send_mail_endpoint() {
-
 		register_rest_route( 'gui/v1', '/user/send_mail/', [
 			'methods'  => 'POST',
 			'callback' => [ $this, 'get_mail' ],
 		] );
 	}
 
-	function get_mail( $request ) {
+	function get_mail( WP_REST_Request $request ) {
 		$body = (object) [
 			'email'   => $request->get_param( 'email' ),
 			'subject' => $request->get_param( 'subject' ),
@@ -312,10 +309,10 @@ class nat_user {
 		foreach ( $body as $k => $v ) {
 			if ( ! isset( $v ) ) {
 				return new WP_REST_Response( $k . ' variable is required!', 400 );
-				exit;
 			}
 		}
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$post_args = (object) [
 			'email'   => $body->email,
 			'subject' => $body->subject,
@@ -326,7 +323,6 @@ class nat_user {
 		$headers[] = 'Content-Type: text/html; charset=UTF-8';
 		$headers[] = 'From: NAT64Check <' . get_bloginfo( 'admin_email' ) . '>';
 
-
 		ob_start();
 		include( locate_template( 'partials/mail/mail-update.php' ) );
 		$message = ob_get_contents();
@@ -335,7 +331,6 @@ class nat_user {
 		wp_mail( $body->email, $body->subject, $message, $headers );
 
 		return new WP_REST_Response( $body, 200 );
-
 	}
 
 	function activation_endpoint() {
@@ -346,7 +341,7 @@ class nat_user {
 		] );
 	}
 
-	function get_code( $request ) {
+	function get_code( WP_REST_Request $request ) {
 		$body = (object) [
 			'user_id'    => $request->get_param( 'user_id' ),
 			'username'   => $request->get_param( 'username' ),
@@ -359,9 +354,9 @@ class nat_user {
 		foreach ( $body as $k => $v ) {
 			if ( ! isset( $v ) ) {
 				return new WP_REST_Response( $k . ' variable is required!', 400 );
-				exit;
 			}
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$post_args = (object) [
 			'user_id'          => $body->user_id,
 			'username'         => $body->username,
@@ -387,7 +382,6 @@ class nat_user {
 		wp_mail( $body->email, $subject, $message, $headers );
 
 		return new WP_REST_Response( $body, 200 );
-
 	}
 }
 

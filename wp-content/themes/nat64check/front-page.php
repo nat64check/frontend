@@ -2,4 +2,4 @@
 
 get_template_part( 'partials/block-allsearches' );
 
-get_footer(); ?>
+get_footer();

@@ -1,4 +1,5 @@
 <?php
+
 /* Template Name: Map */
 get_header();
 
@@ -65,7 +66,7 @@ $test_locations = json_decode( $nat_api->request( 'trillians/?' . $server_query 
             <div class="container">
                 <div class="row">
                     <div class="col-sm-5">
-                        <h3 clas>Website</h3>
+                        <h3>Website</h3>
                     </div>
                     <div class="col-sm-4 text-center date">
                         <h3>Location</h3>

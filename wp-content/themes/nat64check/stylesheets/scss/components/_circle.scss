@@ -13,13 +13,12 @@ $transition-length: 3s;
 
 
 .big-circle-nat {
-  margin: 20px;
   width: $big-circle;
   height: $big-circle;
   background-color: $color-secondary;
   border-radius: 50%;
   position: relative;
-  margin-bottom: 50px;
+  margin: 20px 20px 50px;
 
   @include device-phone-large {
     margin: 10px;
@@ -51,7 +50,7 @@ $transition-length: 3s;
       clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
 
       .ko-progress-circle__fill {
-        clip: rect(0px, $circle-size/2, $circle-size, 0px);
+        clip: rect(0px, $circle-size/2, $circle-size, 0);
         background-color: $font-color-white;
       }
     }
@@ -99,13 +98,12 @@ $transition-length: 3s;
 }
 
 .big-circle-ipv {
-  margin: 20px;
   width: $big-circle;
   height: $big-circle;
   background-color: $color-secondary;
   border-radius: 50%;
   position: relative;
-  margin-bottom: 50px;
+  margin: 20px 20px 50px;
 
   @include device-phone-large {
     margin: 10px;
@@ -137,7 +135,7 @@ $transition-length: 3s;
       clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
 
       .ko-progress-circle__fill {
-        clip: rect(0px, $circle-size/2, $circle-size, 0px);
+        clip: rect(0px, $circle-size/2, $circle-size, 0);
         background-color: $font-color-white;
       }
     }
